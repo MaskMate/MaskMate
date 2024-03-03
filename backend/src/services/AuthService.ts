@@ -138,5 +138,8 @@ const validateCode = async (email: string, code: string) => {
     const otp = await findOtpByEmail(email);
     if (otp === null) throw new Error("Email ID not found");
     if (otp.otp !== code) throw new Error("Incorrect verification code");
+    const currentDate = new Date().toISOString();
+    const utcDate = new Date(currentDate);
+    if (otp.expiresAt < utcDate) throw new Error("Verification code expired");
     return otp;
 };

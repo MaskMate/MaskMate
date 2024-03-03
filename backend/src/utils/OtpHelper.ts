@@ -1,6 +1,7 @@
 import otpGenerator from "otp-generator";
 import nodemailer from "nodemailer";
 import { findByOtp } from "../db/repositories/OtpRepository";
+import * as fs from "fs";
 
 export const generateOtp = async () => {
     while (true) {
@@ -25,13 +26,19 @@ export const sendEmail = async (email: string, otp: string) => {
         if (email === "test@iitd.ac.in") return;
 
         await transporter.sendMail({
-            from: "MaskMate Auth service",
+            from: process.env.MAIL_EMAIL,
             to: email,
-            subject: "Otp Verification",
-            html: `<h1>Please confirm your OTP </h1>
-            <p> here is your OTP code: ${otp} </p>`,
+            subject: "MaskMate Email Verification",
+            html: html(email, otp),
         });
     } catch (error) {
         throw error;
     }
+};
+
+const html = (email: string, otp: string) => {
+    let htmlContent = fs.readFileSync("public/index.html", "utf8");
+    htmlContent = htmlContent.replace("EMAIL_PLACEHOLDER", email);
+    htmlContent = htmlContent.replace("OTP_PLACEHOLDER", otp);
+    return htmlContent;
 };

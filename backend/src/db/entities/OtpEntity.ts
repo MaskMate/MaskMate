@@ -1,4 +1,5 @@
 import {
+    BeforeInsert,
     Column,
     CreateDateColumn,
     Entity,
@@ -21,6 +22,17 @@ export class Otp {
     @Column({ type: "boolean", default: false })
     verified: boolean;
 
-    @CreateDateColumn({ type: "timestamp" })
+    @Column({ type: "timestamptz" })
+    expiresAt: Date;
+
+    @CreateDateColumn({ type: "timestamptz" })
     createdAt: Date;
+
+    @BeforeInsert()
+    addExpiry() {
+        const currentDate = new Date().toISOString();
+        const utcDate = new Date(currentDate);
+        utcDate.setMinutes(utcDate.getMinutes() + 30);
+        this.expiresAt = utcDate;
+    }
 }
