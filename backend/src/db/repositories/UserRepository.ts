@@ -14,7 +14,10 @@ export const isCredentialTaken = async (username: string, email: string) => {
 };
 
 export const findUserByEmail = async (email: string) => {
-    return await userRepo.findOne({ where: { email } });
+    return await userRepo.findOne({
+        where: { email },
+        relations: ["university"],
+    });
 };
 
 export const findUserByUsername = async (username: string) => {

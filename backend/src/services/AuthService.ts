@@ -15,8 +15,11 @@ import {
     saveUser,
 } from "../db/repositories/UserRepository";
 import { generateOtp, sendEmail } from "../utils/OtpHelper";
-import { generateUsername } from "../utils/UsernameHelper";
-import { comparePassword, hashPassword } from "../utils/passwordHelper";
+import {
+    comparePassword,
+    generateUsername,
+    hashPassword,
+} from "../utils/AuthHelper";
 
 export const registerEmail = async (email: string) => {
     try {
