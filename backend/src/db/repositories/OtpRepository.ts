@@ -13,3 +13,7 @@ export const deleteOtpbyEmail = async (email: string) => {
 export const findByOtp = async (otp: string) => {
     return await otpRepo.findOne({ where: { otp } });
 };
+
+export const findOtpByEmail = async (email: string) => {
+    return await otpRepo.findOne({ where: { email } });
+};
