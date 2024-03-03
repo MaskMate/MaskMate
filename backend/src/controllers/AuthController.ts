@@ -13,8 +13,8 @@ export const handleSignup = async (req: Request, res: Response) => {
         return res.status(400).json({ data: null, error: "Missing Email ID" });
     }
     try {
-        const newOtp = await registerEmail(email);
-        return res.json({ data: { email: newOtp.email }, error: null });
+        await registerEmail(email);
+        return res.json({ data: { email }, error: null });
     } catch (error) {
         return res
             .status(500)
