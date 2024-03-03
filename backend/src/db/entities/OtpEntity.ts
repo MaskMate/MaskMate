@@ -2,6 +2,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -11,6 +12,7 @@ export class Otp {
     id: string;
 
     @Column({ type: "varchar", length: 100, unique: true })
+    @Index({ unique: true })
     email: string;
 
     @Column({ type: "varchar", length: 6, unique: true })

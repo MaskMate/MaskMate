@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import "reflect-metadata";
 import dataSource from "./db/postgres.config";
 import AuthRouter from "./router/AuthRouter";
+import { prepareDataForUniversityTable } from "./utils/UniversityHelper";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(json());
 dataSource
     .initialize()
     .then(() => {
+        prepareDataForUniversityTable();
         console.log(`Connected to ${database} database!`);
     })
     .catch((error) => {
