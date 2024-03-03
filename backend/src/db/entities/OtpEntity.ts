@@ -18,6 +18,9 @@ export class Otp {
     @Column({ type: "varchar", length: 6, unique: true })
     otp: string;
 
+    @Column({ type: "boolean", default: false })
+    verified: boolean;
+
     @CreateDateColumn({ type: "timestamp" })
     createdAt: Date;
 }

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
     getSignupDetails,
     registerEmail,
+    registerNewUser,
     validateVerificationCode,
 } from "../services/AuthService";
 
@@ -53,5 +54,34 @@ export const handleSignupDetails = async (req: Request, res: Response) => {
         return res.json({ data: { username, universityName }, error: null });
     } catch (error) {
         return res.json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleRegister = async (req: Request, res: Response) => {
+    const { email, password, username, universityName } = req.body;
+    const requiredFields = ["password", "username", "universityName"];
+
+    for (let field of requiredFields) {
+        if (!req.body[field]) {
+            return res
+                .status(400)
+                .json({ data: null, error: `Missing ${field.toUpperCase()}` });
+        }
+    }
+    try {
+        const newUser = await registerNewUser(
+            email,
+            password,
+            username,
+            universityName
+        );
+        return res.status(201).json({
+            data: { user: newUser },
+            error: null,
+        });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
     }
 };

@@ -4,7 +4,9 @@ import {
     Column,
     CreateDateColumn,
     Index,
+    OneToMany,
 } from "typeorm";
+import { User } from "./UserEntity";
 
 @Entity()
 export class University {
@@ -27,4 +29,7 @@ export class University {
 
     @CreateDateColumn({ type: "timestamp" })
     createdAt: Date;
+
+    @OneToMany(() => User, (user) => user.university)
+    users: User[];
 }
