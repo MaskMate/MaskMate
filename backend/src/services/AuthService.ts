@@ -4,8 +4,10 @@ import {
     findOtpByEmail,
     saveOtp,
 } from "../db/repositories/OtpRepository";
+import { findUniversityByDomain } from "../db/repositories/UniversityRepository";
 import { findUserByEmail } from "../db/repositories/UserRepository";
 import { generateOtp, sendEmail } from "../utils/OtpHelper";
+import { generateUsername } from "../utils/UsernameHelper";
 
 export const registerEmail = async (email: string) => {
     try {
@@ -25,7 +27,18 @@ export const registerEmail = async (email: string) => {
 export const validateVerificationCode = async (email: string, code: string) => {
     try {
         await validateCode(email, code);
-        return await deleteOtpbyEmail(email);
+        await deleteOtpbyEmail(email);
+    } catch (error) {
+        throw error;
+    }
+};
+export const getSignupDetails = async (email: string) => {
+    try {
+        const username = await generateUsername();
+        const domain = email.split("@")[1];
+        const university = await findUniversityByDomain(domain);
+        if (university) return { username, universityName: university.name };
+        return { username, universityName: null };
     } catch (error) {
         throw error;
     }

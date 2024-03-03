@@ -20269,12 +20269,6 @@
         "country": "France"
     },
     {
-        "web_pages": ["http://www-ensais.u-strasbg.fr/"],
-        "name": "Ecole Nationale Supérieure des Arts et Industries de Strasbourg",
-        "domains": ["www-ensais.u-strasbg.fr"],
-        "country": "France"
-    },
-    {
         "web_pages": [
             "https://grenoble-inp.fr/",
             "https://phelma.grenoble-inp.fr/",

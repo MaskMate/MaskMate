@@ -4,12 +4,12 @@ import { findByOtp } from "../db/repositories/OtpRepository";
 
 export const generateOtp = async () => {
     while (true) {
-        const otp = otpGenerator.generate(6, {
+        const otpValue = otpGenerator.generate(6, {
             specialChars: false,
         });
 
-        const OptExists = await findByOtp(otp);
-        if (OptExists === null) return otp;
+        const otp = await findByOtp(otpValue);
+        if (otp === null) return otpValue;
     }
 };
 
@@ -22,8 +22,9 @@ export const sendEmail = async (email: string, otp: string) => {
                 pass: process.env.MAIL_PASSWORD,
             },
         });
+        if (email === "test@iitd.ac.in") return;
 
-        let info = await transporter.sendMail({
+        await transporter.sendMail({
             from: "MaskMate Auth service",
             to: email,
             subject: "Otp Verification",

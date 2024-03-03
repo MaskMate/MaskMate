@@ -6,3 +6,7 @@ const userRepo = dataSource.getRepository(User);
 export const findUserByEmail = async (email: string) => {
     return await userRepo.findOne({ where: { email } });
 };
+
+export const findUserByUsername = async (username: string) => {
+    return await userRepo.findOne({ where: { username } });
+};

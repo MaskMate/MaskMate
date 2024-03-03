@@ -18,3 +18,7 @@ export const insertIntoDatabase = async (data: RequiredData[]) => {
     });
     await universityRepo.save(universities);
 };
+
+export const findUniversityByDomain = async (domain: string) => {
+    return await universityRepo.findOne({ where: { domain } });
+};

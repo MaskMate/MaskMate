@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import {
+    getSignupDetails,
     registerEmail,
     validateVerificationCode,
 } from "../services/AuthService";
@@ -38,5 +39,19 @@ export const handleVerificationCode = async (req: Request, res: Response) => {
         return res
             .status(500)
             .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleSignupDetails = async (req: Request, res: Response) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ data: null, error: "Missing Email ID" });
+    }
+    try {
+        const { username, universityName } = await getSignupDetails(email);
+        return res.json({ data: { username, universityName }, error: null });
+    } catch (error) {
+        return res.json({ data: null, error: (error as Error).message });
     }
 };
