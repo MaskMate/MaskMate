@@ -1,4 +1,6 @@
 import { DataSource } from "typeorm";
+import { User } from "./entities/UserEntity";
+import { Otp } from "./entities/OtpEntity";
 
 const dataSource = new DataSource({
     type: "postgres",
@@ -8,7 +10,7 @@ const dataSource = new DataSource({
     password: process.env.POSTGRES_PASSWORD || "makemask_password",
     database: process.env.POSTGRES_DATABASE || "makemask",
     // logging: true,
-    entities: [],
+    entities: [User, Otp],
     synchronize: true,
 });
 
