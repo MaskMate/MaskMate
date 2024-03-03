@@ -1,0 +1,38 @@
+{
+    "name": "backend",
+    "version": "0.0.1",
+    "description": "MaskMate Backend",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "npx tsc",
+        "start": "node dist/index.js",
+        "dev": "nodemon src/index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MaskMate/MaskMate.git"
+    },
+    "keywords": [
+        "maskmate",
+        "social media app",
+        "backend",
+        "express",
+        "postgres"
+    ],
+    "author": "Lokeswaran Aruljothy",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/MaskMate/MaskMate/issues"
+    },
+    "homepage": "https://github.com/MaskMate/MaskMate#readme",
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "express": "^4.18.3"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "nodemon": "^3.1.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}
