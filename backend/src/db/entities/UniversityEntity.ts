@@ -10,24 +10,24 @@ import { User } from "./UserEntity";
 
 @Entity()
 export class University {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+    @PrimaryGeneratedColumn("uuid", { name: "university_id" })
+    universityId: string;
 
-    @Column({ type: "varchar" })
+    @Column({ name: "university_name", type: "varchar" })
     name: string;
 
-    @Column({ type: "varchar", unique: true })
+    @Column({ name: "university_domain", type: "varchar", unique: true })
     @Index({ unique: true })
     domain: string;
 
-    @Column({ type: "varchar" })
+    @Column({ name: "country", type: "varchar" })
     country: string;
 
-    @Column({ type: "varchar" })
+    @Column({ name: "logo", type: "varchar" })
     logo: string =
         "https://cdn2.iconfinder.com/data/icons/school-and-education-flat/64/Education_Flat-48-512.png";
 
-    @CreateDateColumn({ type: "timestamp" })
+    @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
     @OneToMany(() => User, (user) => user.university)

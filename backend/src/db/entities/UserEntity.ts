@@ -10,21 +10,21 @@ import { University } from "./UniversityEntity";
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+    @PrimaryGeneratedColumn("uuid", { name: "user_id" })
+    userId: string;
 
-    @Column({ type: "varchar", length: 50, unique: true })
+    @Column({ name: "username", type: "varchar", length: 50, unique: true })
     @Index({ unique: true })
     username: string;
 
-    @Column({ type: "varchar", length: 100, unique: true })
+    @Column({ name: "email", type: "varchar", length: 100, unique: true })
     @Index({ unique: true })
     email: string;
 
-    @Column({ type: "varchar" })
+    @Column({ name: "password", type: "varchar" })
     password: string;
 
-    @CreateDateColumn({ type: "timestamp" })
+    @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
     @ManyToOne(() => University, (university) => university.users)

@@ -37,8 +37,7 @@ export const validateVerificationCode = async (email: string, code: string) => {
     try {
         const otp = await validateCode(email, code);
         otp.verified = true;
-        const result = await verifyEmail(otp);
-        console.log("result", result);
+        await verifyEmail(otp);
     } catch (error) {
         throw error;
     }

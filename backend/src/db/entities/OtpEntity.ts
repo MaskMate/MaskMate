@@ -9,23 +9,23 @@ import {
 
 @Entity()
 export class Otp {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+    @PrimaryGeneratedColumn("uuid", { name: "otp_id" })
+    otpId: string;
 
-    @Column({ type: "varchar", length: 100, unique: true })
+    @Column({ name: "email", type: "varchar", length: 100, unique: true })
     @Index({ unique: true })
     email: string;
 
-    @Column({ type: "varchar", length: 6, unique: true })
+    @Column({ name: "otp", type: "varchar", length: 6, unique: true })
     otp: string;
 
-    @Column({ type: "boolean", default: false })
+    @Column({ name: "verified", type: "boolean", default: false })
     verified: boolean;
 
-    @Column({ type: "timestamptz" })
+    @Column({ name: "expires_at", type: "timestamptz" })
     expiresAt: Date;
 
-    @CreateDateColumn({ type: "timestamptz" })
+    @CreateDateColumn({ name: "created_at", type: "timestamptz" })
     createdAt: Date;
 
     @BeforeInsert()
