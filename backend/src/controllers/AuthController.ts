@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
     getSignupDetails,
+    loginUser,
     registerEmail,
     registerNewUser,
     validateVerificationCode,
@@ -77,6 +78,28 @@ export const handleRegister = async (req: Request, res: Response) => {
         );
         return res.status(201).json({
             data: { user: newUser },
+            error: null,
+        });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleLogin = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ data: null, error: "Missing Email ID" });
+    }
+    if (!password) {
+        return res.status(400).json({ data: null, error: "Missing Password" });
+    }
+    try {
+        const user = await loginUser(email, password);
+        return res.status(200).json({
+            data: { user },
             error: null,
         });
     } catch (error) {

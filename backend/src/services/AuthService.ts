@@ -16,7 +16,7 @@ import {
 } from "../db/repositories/UserRepository";
 import { generateOtp, sendEmail } from "../utils/OtpHelper";
 import { generateUsername } from "../utils/UsernameHelper";
-import { hashPassword } from "../utils/passwordHelper";
+import { comparePassword, hashPassword } from "../utils/passwordHelper";
 
 export const registerEmail = async (email: string) => {
     try {
@@ -45,6 +45,7 @@ export const validateVerificationCode = async (email: string, code: string) => {
 };
 export const getSignupDetails = async (email: string) => {
     try {
+        await deleteOtpbyEmail(email);
         const username = await generateUsername();
         const domain = email.split("@")[1];
         const university = await findUniversityByDomain(domain);
@@ -63,8 +64,7 @@ export const registerNewUser = async (
 ) => {
     try {
         await validateCredentials(username, email, password);
-        await deleteOtpbyEmail(email);
-        password = await hashPassword(password);
+        const hashedPassword = await hashPassword(password);
         const domain = email.split("@")[1];
         let university = await findUniversityByDomain(domain);
         if (university === null) {
@@ -76,7 +76,7 @@ export const registerNewUser = async (
         const user = new User();
         user.username = username;
         user.email = email;
-        user.password = password;
+        user.password = hashedPassword;
         user.university = university;
 
         return await saveUser(user);
@@ -85,11 +85,23 @@ export const registerNewUser = async (
     }
 };
 
-const validateEmail = async (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        throw new Error("Invalid Email ID");
+export const loginUser = async (email: string, password: string) => {
+    try {
+        validateEmailFormat(email);
+
+        const user = await findUserByEmail(email);
+        if (!user) throw new Error("Invalid Email ID");
+        const isPasswordMatch = await comparePassword(password, user.password);
+        if (!isPasswordMatch) throw new Error("Invalid Email ID or Password");
+
+        return user;
+    } catch (error) {
+        throw error;
     }
+};
+
+const validateEmail = async (email: string) => {
+    validateEmailFormat(email);
 
     const existingUser = await findUserByEmail(email);
     if (existingUser?.email === email) {
@@ -114,10 +126,7 @@ const validateCredentials = async (
         );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        throw new Error("Invalid Email id");
-    }
+    validateEmailFormat(email);
 
     if (password.length < 8) {
         throw new Error("Password must be at least 8 characters");
@@ -142,4 +151,10 @@ const validateCode = async (email: string, code: string) => {
     const utcDate = new Date(currentDate);
     if (otp.expiresAt < utcDate) throw new Error("Verification code expired");
     return otp;
+};
+const validateEmailFormat = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        throw new Error("Invalid Email ID");
+    }
 };
