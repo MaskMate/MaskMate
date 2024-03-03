@@ -10,6 +10,7 @@ export const saveUser = async (user: User) => {
 export const isCredentialTaken = async (username: string, email: string) => {
     return await userRepo.findOne({
         where: [{ username: username }, { email: email }],
+        select: ["email", "username"],
     });
 };
 
@@ -17,9 +18,24 @@ export const findUserByEmail = async (email: string) => {
     return await userRepo.findOne({
         where: { email },
         relations: ["university"],
+        select: ["userId", "email", "username"],
     });
 };
 
 export const findUserByUsername = async (username: string) => {
-    return await userRepo.findOne({ where: { username } });
+    return await userRepo.findOne({
+        where: { username },
+        select: ["username"],
+    });
+};
+
+export const findByUser = async (
+    userId: string,
+    username: string,
+    email: string
+) => {
+    return await userRepo.findOne({
+        where: [{ userId }, { username }, { email }],
+        select: ["userId", "email", "username"],
+    });
 };

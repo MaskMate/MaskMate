@@ -38,10 +38,8 @@ export const generateToken = (user: User) => {
     return jwt.sign(
         {
             userId: user.userId,
-            universityId: user.university.universityId,
             email: user.email,
             username: user.username,
-            universityName: user.university.name,
         },
         JWT_SECRET,
         { expiresIn: "30d" }

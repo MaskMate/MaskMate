@@ -25,7 +25,7 @@ export const deleteOldEmail = async (email: string) => {
 };
 
 export const findByOtp = async (otp: string) => {
-    return await otpRepo.findOne({ where: { otp } });
+    return await otpRepo.findOne({ where: { otp }, select: ["otp"] });
 };
 
 export const findOtpByEmail = async (email: string) => {
