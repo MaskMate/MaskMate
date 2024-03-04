@@ -5,8 +5,10 @@ import {
     CreateDateColumn,
     Index,
     ManyToOne,
+    OneToMany,
 } from "typeorm";
 import { University } from "./UniversityEntity";
+import { Post } from "./PostEntity";
 
 @Entity()
 export class User {
@@ -29,4 +31,7 @@ export class User {
 
     @ManyToOne(() => University, (university) => university.users)
     university: University;
+
+    @OneToMany(() => Post, (post) => post.user)
+    posts: Post[];
 }

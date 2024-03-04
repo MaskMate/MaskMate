@@ -1,0 +1,12 @@
+export enum PostCategories {
+    EXAM = "EXAM",
+    PROJECT = "PROJECT",
+    LEETCODE = "LEETCODE",
+    JOB = "JOB",
+    HACKATHON = "HACKATHON",
+    INTERVIEW = "INTERVIEW",
+    TUTORIAL = "TUTORIAL",
+    CULTURAL = "CULTURAL",
+    SYMPOSIUM = "SYMPOSIUM",
+    WORKSHOP = "WORKSHOP",
+}
