@@ -22,7 +22,7 @@ export class Post {
     @Column({ name: "upvote", type: "bigint", default: 0 })
     upvote: bigint;
 
-    @Column({ name: "upvote", type: "bigint", default: 0 })
+    @Column({ name: "downvote", type: "bigint", default: 0 })
     downvote: bigint;
 
     @CreateDateColumn({ name: "created_at", type: "timestamp" })

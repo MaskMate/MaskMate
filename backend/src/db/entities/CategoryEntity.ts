@@ -2,10 +2,11 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     OneToMany,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { PostCategories } from "../../utils/Categories";
+import { PostCategories } from "../../constants/Categories";
 import { Post } from "./PostEntity";
 
 @Entity()
@@ -14,10 +15,8 @@ export class Category {
     categoryId: string;
 
     @Column({ name: "category_name", type: "enum", enum: PostCategories })
+    @Index()
     name: string;
-
-    @Column({ name: "description", type: "varchar" })
-    description: string;
 
     @Column({ name: "logo", type: "varchar" })
     logo: string;
