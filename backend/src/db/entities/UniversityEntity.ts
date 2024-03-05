@@ -20,7 +20,7 @@ export class University {
     @Index({ unique: true })
     domain: string;
 
-    @Column({ name: "country", type: "varchar" })
+    @Column({ name: "country", type: "varchar", nullable: true })
     country: string;
 
     @Column({ name: "logo", type: "varchar" })

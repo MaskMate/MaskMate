@@ -8,7 +8,10 @@ import {
     saveOtp,
     verifyEmail,
 } from "../db/repositories/OtpRepository";
-import { findUniversityByDomain } from "../db/repositories/UniversityRepository";
+import {
+    findUniversityByDomain,
+    saveUniversity,
+} from "../db/repositories/UniversityRepository";
 import {
     findUserByEmail,
     isEmailTaken,
@@ -53,7 +56,6 @@ export const validateVerificationCode = async (email: string, code: string) => {
 };
 export const getSignupDetails = async (email: string) => {
     try {
-        await deleteOtpbyEmail(email);
         const username = await generateUsername();
         const domain = email.split("@")[1];
         const university = await findUniversityByDomain(domain);
@@ -71,14 +73,16 @@ export const registerNewUser = async (
     universityName: string
 ) => {
     try {
+        await deleteOtpbyEmail(email);
         await validateCredentials(username, email, password);
         const hashedPassword = await hashPassword(password);
         const domain = email.split("@")[1];
         let university = await findUniversityByDomain(domain);
         if (university === null) {
-            university = new University();
-            university.domain = domain;
-            university.name = universityName;
+            let newUniversity = new University();
+            newUniversity.domain = domain;
+            newUniversity.name = universityName;
+            university = await saveUniversity(newUniversity);
         }
 
         const user = new User();

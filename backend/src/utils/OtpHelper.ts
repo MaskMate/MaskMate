@@ -23,7 +23,7 @@ export const sendEmail = async (email: string, otp: string) => {
                 pass: process.env.MAIL_PASSWORD,
             },
         });
-        if (email === "test@iitd.ac.in") return;
+        if (email === "test@iitd.ac.in" || email === "test@test.com") return;
 
         await transporter.sendMail({
             from: process.env.MAIL_EMAIL,
