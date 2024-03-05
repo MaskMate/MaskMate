@@ -6,7 +6,7 @@ import {
     ManyToOne,
 } from "typeorm";
 import { Category } from "./CategoryEntity";
-import { User } from "./UserEntity";
+import { Profile } from "./ProfileEntity";
 
 @Entity()
 export class Post {
@@ -31,6 +31,6 @@ export class Post {
     @ManyToOne(() => Category, (category) => category.posts)
     category: Category;
 
-    @ManyToOne(() => User, (user) => user.posts)
-    user: User;
+    @ManyToOne(() => Profile, (profile) => profile.posts)
+    profile: Profile;
 }

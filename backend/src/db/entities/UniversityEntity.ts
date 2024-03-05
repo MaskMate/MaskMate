@@ -6,7 +6,7 @@ import {
     Index,
     OneToMany,
 } from "typeorm";
-import { User } from "./UserEntity";
+import { Profile } from "./ProfileEntity";
 
 @Entity()
 export class University {
@@ -30,6 +30,6 @@ export class University {
     @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
-    @OneToMany(() => User, (user) => user.university)
-    users: User[];
+    @OneToMany(() => Profile, (profile) => profile.university)
+    profiles: Profile[];
 }
