@@ -9,9 +9,10 @@ import {
     savePost,
 } from "../db/repositories/PostRepository";
 import { MissingDeleteDateColumnError } from "typeorm/error/MissingDeleteDateColumnError";
+import { Profile } from "../db/entities/ProfileEntity";
 
 export const createNewPost = async (
-    user: User,
+    profile: Profile,
     title: string,
     content: string,
     category: PostCategories
@@ -27,7 +28,7 @@ export const createNewPost = async (
         post.upvote = 0;
         post.downvote = 0;
         post.createdAt = new Date();
-        post.user = user;
+        post.profile = profile;
 
         return await savePost(post);
     } catch (error) {

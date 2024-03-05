@@ -5,10 +5,10 @@ import {
     editPost,
     getAllPosts,
 } from "../services/PostService";
-import { User } from "../db/entities/UserEntity";
+import { Profile } from "../db/entities/ProfileEntity";
 
 export const handleNewPost = async (req: Request, res: Response) => {
-    const user = req.user as User;
+    const profile = req.profile as Profile;
     const { title, content, category } = req.body;
 
     if (!title)
@@ -18,7 +18,12 @@ export const handleNewPost = async (req: Request, res: Response) => {
         return res.status(400).json({ data: null, error: "Missing Category." });
 
     try {
-        const savedPost = await createNewPost(user, title, content, category);
+        const savedPost = await createNewPost(
+            profile,
+            title,
+            content,
+            category
+        );
         return res.status(201).json({ data: { post: savedPost }, error: null });
     } catch (error) {
         return res

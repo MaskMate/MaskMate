@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { User } from "../db/entities/UserEntity";
 import otpGenerator from "otp-generator";
-import { findUserByUsername } from "../db/repositories/UserRepository";
+import { Profile } from "../db/entities/ProfileEntity";
+import { isUsernameTaken } from "../db/repositories/ProfileRepository";
 
 export const hashPassword = async (password: string) => {
     try {
@@ -28,19 +28,19 @@ export const generateUsername = async () => {
             specialChars: false,
         });
 
-        const user = await findUserByUsername(username);
-        if (user === null) return username;
+        const profile = await isUsernameTaken(username);
+        if (profile === null) return username;
     }
 };
 
-export const generateToken = (user: User) => {
+export const generateToken = (profile: Profile) => {
     const JWT_SECRET = process.env.JWT_SECRET || "mysecret";
 
     return jwt.sign(
         {
-            userId: user.userId,
-            email: user.email,
-            username: user.username,
+            profileId: profile.profileId,
+            email: profile.email,
+            username: profile.username,
         },
         JWT_SECRET,
         { expiresIn: "30d" }

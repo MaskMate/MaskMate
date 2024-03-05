@@ -109,8 +109,8 @@ export const handleLogin = async (req: Request, res: Response) => {
         return res.status(400).json({ data: null, error: "Missing Password." });
 
     try {
-        const user = await loginUser(email, password);
-        const token = generateToken(user);
+        const profile = await loginUser(email, password);
+        const token = generateToken(profile);
         if (token) {
             return res.status(200).json({
                 data: { token },

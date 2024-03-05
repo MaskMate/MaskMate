@@ -11,7 +11,6 @@ import {
 import { findUniversityByDomain } from "../db/repositories/UniversityRepository";
 import {
     findUserByEmail,
-    isCredentialTaken,
     isEmailTaken,
     saveUser,
 } from "../db/repositories/UserRepository";
@@ -21,6 +20,12 @@ import {
     generateUsername,
     hashPassword,
 } from "../utils/AuthHelper";
+import { Profile } from "../db/entities/ProfileEntity";
+import {
+    findProfileByEmail,
+    isCredentialTaken,
+    saveProfile,
+} from "../db/repositories/ProfileRepository";
 
 export const registerEmail = async (email: string) => {
     try {
@@ -77,13 +82,19 @@ export const registerNewUser = async (
         }
 
         const user = new User();
-        user.username = username;
         user.email = email;
         user.password = hashedPassword;
-        user.university = university;
 
-        return await saveUser(user);
+        const profile = new Profile();
+        profile.username = username;
+        profile.email = email;
+        profile.university = university;
+
+        await saveUser(user);
+        return await saveProfile(profile);
     } catch (error) {
+        console.log(error);
+
         throw error;
     }
 };
@@ -97,7 +108,10 @@ export const loginUser = async (email: string, password: string) => {
         const isPasswordMatch = await comparePassword(password, user.password);
         if (!isPasswordMatch) throw new Error("Invalid Email ID or Password");
 
-        return user;
+        const profile = await findProfileByEmail(email);
+        if (!profile) throw new Error("Invalid Email ID");
+
+        return profile;
     } catch (error) {
         throw error;
     }

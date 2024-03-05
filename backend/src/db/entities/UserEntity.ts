@@ -4,11 +4,7 @@ import {
     Column,
     CreateDateColumn,
     Index,
-    ManyToOne,
-    OneToMany,
 } from "typeorm";
-import { University } from "./UniversityEntity";
-import { Post } from "./PostEntity";
 
 @Entity()
 export class User {
