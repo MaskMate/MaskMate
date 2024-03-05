@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
-import { createNewPost, editPost, getAllPosts } from "../services/PostService";
+import {
+    createNewPost,
+    deletePost,
+    editPost,
+    getAllPosts,
+} from "../services/PostService";
 import { User } from "../db/entities/UserEntity";
 
 export const handleNewPost = async (req: Request, res: Response) => {
@@ -44,6 +49,22 @@ export const handleEditPost = async (req: Request, res: Response) => {
         return res
             .status(200)
             .json({ data: { post: updatedPost }, error: null });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleDeletePost = async (req: Request, res: Response) => {
+    const { postId } = req.body;
+
+    if (!postId)
+        return res.status(400).json({ data: null, error: "Missing Post ID." });
+
+    try {
+        await deletePost(postId);
+        return res.status(200).json({ data: null, error: null });
     } catch (error) {
         return res
             .status(500)

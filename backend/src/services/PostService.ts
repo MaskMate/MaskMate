@@ -3,10 +3,12 @@ import { User } from "../db/entities/UserEntity";
 import { PostCategories } from "../constants/Categories";
 import { getCategory } from "../db/repositories/CategoryRepository";
 import {
+    deletePostByPostId,
     findPostByPostId,
     getLatestPosts,
     savePost,
 } from "../db/repositories/PostRepository";
+import { MissingDeleteDateColumnError } from "typeorm/error/MissingDeleteDateColumnError";
 
 export const createNewPost = async (
     user: User,
@@ -55,6 +57,16 @@ export const editPost = async (
 
         return await savePost(post);
     } catch (error) {
+        throw error;
+    }
+};
+
+export const deletePost = async (postId: string) => {
+    try {
+        await deletePostByPostId(postId);
+    } catch (error) {
+        if (error instanceof MissingDeleteDateColumnError)
+            throw new Error("Invalid Post ID");
         throw error;
     }
 };

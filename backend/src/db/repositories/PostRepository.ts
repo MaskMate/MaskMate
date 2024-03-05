@@ -19,3 +19,7 @@ export const getLatestPosts = async () => {
 export const findPostByPostId = async (postId: string) => {
     return await postRepo.findOneBy({ postId });
 };
+
+export const deletePostByPostId = async (postId: string) => {
+    await postRepo.softDelete({ postId });
+};
