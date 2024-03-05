@@ -11,7 +11,7 @@ import { User } from "./UserEntity";
 @Entity()
 export class Post {
     @PrimaryGeneratedColumn("uuid", { name: "post_id" })
-    postId: number;
+    postId: string;
 
     @Column({ name: "title", type: "varchar" })
     title: string;
