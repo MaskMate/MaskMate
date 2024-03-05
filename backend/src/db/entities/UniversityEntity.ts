@@ -20,9 +20,6 @@ export class University {
     @Index({ unique: true })
     domain: string;
 
-    @Column({ name: "country", type: "varchar", nullable: true })
-    country: string;
-
     @Column({ name: "logo", type: "varchar" })
     logo: string =
         "https://cdn2.iconfinder.com/data/icons/school-and-education-flat/64/Education_Flat-48-512.png";

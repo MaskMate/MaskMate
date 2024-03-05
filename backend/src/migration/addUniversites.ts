@@ -9,7 +9,6 @@ export class AddUniversites1709573535718 implements MigrationInterface {
             const university = new University();
             university.name = item.name;
             university.domain = item.domain;
-            university.country = item.country;
             return university;
         });
         await queryRunner.manager.save(universities);
