@@ -55,7 +55,9 @@ export const handleSignupDetails = async (req: Request, res: Response) => {
         const { username, universityName } = await getSignupDetails(email);
         return res.json({ data: { username, universityName }, error: null });
     } catch (error) {
-        return res.json({ data: null, error: (error as Error).message });
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
     }
 };
 
