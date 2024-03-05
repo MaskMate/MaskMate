@@ -51,7 +51,7 @@ export const editPost = async (
     try {
         const post = await findPostByPostId(postId);
 
-        if (!post) throw new Error("Invalid Post ID");
+        if (!post) throw new Error("Invalid Post ID.");
         if (title) post.title = title;
         if (content) post.content = content;
 
@@ -63,10 +63,9 @@ export const editPost = async (
 
 export const deletePost = async (postId: string) => {
     try {
-        await deletePostByPostId(postId);
+        const deletedPost = await deletePostByPostId(postId);
+        if (deletedPost.affected === 0) throw new Error("Invalid Post ID.");
     } catch (error) {
-        if (error instanceof MissingDeleteDateColumnError)
-            throw new Error("Invalid Post ID");
         throw error;
     }
 };

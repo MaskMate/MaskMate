@@ -21,5 +21,5 @@ export const findPostByPostId = async (postId: string) => {
 };
 
 export const deletePostByPostId = async (postId: string) => {
-    await postRepo.softDelete({ postId });
+    return await postRepo.delete({ postId });
 };
