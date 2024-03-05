@@ -14,11 +14,18 @@ export const isCredentialTaken = async (username: string, email: string) => {
     });
 };
 
+export const isEmailTaken = async (email: string) => {
+    return await userRepo.findOne({
+        where: { email },
+        relations: ["university"],
+        select: ["userId"],
+    });
+};
+
 export const findUserByEmail = async (email: string) => {
     return await userRepo.findOne({
         where: { email },
         relations: ["university"],
-        select: ["userId", "email", "username"],
     });
 };
 
@@ -29,13 +36,14 @@ export const findUserByUsername = async (username: string) => {
     });
 };
 
-export const findByUser = async (
+export const findUser = async (
     userId: string,
     username: string,
     email: string
 ) => {
     return await userRepo.findOne({
         where: [{ userId }, { username }, { email }],
-        select: ["userId", "email", "username"],
+        select: ["userId", "email", "username", "university"],
+        relations: ["university"],
     });
 };

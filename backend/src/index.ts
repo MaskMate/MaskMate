@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import "reflect-metadata";
 import dataSource from "./db/postgres.config";
 import AuthRouter from "./router/AuthRouter";
+import PostRouter from "./router/PostRouter";
 
 dotenv.config();
 
@@ -23,5 +24,6 @@ dataSource
     });
 
 app.use("/api/auth", AuthRouter);
+app.use("/api/post", PostRouter);
 
 app.listen(port, () => console.log(`Server is running on ${port}!`));

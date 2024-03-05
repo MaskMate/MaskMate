@@ -19,11 +19,11 @@ export class Post {
     @Column({ name: "content", type: "varchar" })
     content: string;
 
-    @Column({ name: "upvote", type: "bigint", default: 0 })
-    upvote: bigint;
+    @Column({ name: "upvote", type: "int", default: 0 })
+    upvote: number;
 
-    @Column({ name: "downvote", type: "bigint", default: 0 })
-    downvote: bigint;
+    @Column({ name: "downvote", type: "int", default: 0 })
+    downvote: number;
 
     @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;

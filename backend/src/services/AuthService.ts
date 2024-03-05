@@ -12,6 +12,7 @@ import { findUniversityByDomain } from "../db/repositories/UniversityRepository"
 import {
     findUserByEmail,
     isCredentialTaken,
+    isEmailTaken,
     saveUser,
 } from "../db/repositories/UserRepository";
 import { generateOtp, sendEmail } from "../utils/OtpHelper";
@@ -105,7 +106,7 @@ export const loginUser = async (email: string, password: string) => {
 const validateEmail = async (email: string) => {
     validateEmailFormat(email);
 
-    const existingUser = await findUserByEmail(email);
+    const existingUser = await isEmailTaken(email);
     if (existingUser?.email === email) {
         throw new Error("Email ID already exists");
     }

@@ -32,9 +32,10 @@ export const generateUsername = async () => {
         if (user === null) return username;
     }
 };
-const JWT_SECRET = process.env.JWT_SECRET || "mysecret";
 
 export const generateToken = (user: User) => {
+    const JWT_SECRET = process.env.JWT_SECRET || "mysecret";
+
     return jwt.sign(
         {
             userId: user.userId,
