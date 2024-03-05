@@ -31,8 +31,6 @@ const authorize = async (
                 const { userId, name, email } = decoded;
                 const user = await findUser(userId, name, email);
                 if (!user) throw new Error("User not found");
-                console.log("user", user.university);
-
                 request.user = user;
                 next();
             } else {

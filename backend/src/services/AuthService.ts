@@ -122,8 +122,6 @@ const validateCredentials = async (
     }
     const usernameRegex = /^[a-z0-9_]+$/i;
     if (!usernameRegex.test(username)) {
-        console.log("true");
-
         throw new Error(
             "Invalid Username. Username can contain aphabets, numbers and underscore only"
         );

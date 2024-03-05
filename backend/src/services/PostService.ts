@@ -2,7 +2,7 @@ import { Post } from "../db/entities/PostEntity";
 import { User } from "../db/entities/UserEntity";
 import { PostCategories } from "../constants/Categories";
 import { getCategory } from "../db/repositories/CategoryRepository";
-import { savePost } from "../db/repositories/PostRepository";
+import { getLatestPosts, savePost } from "../db/repositories/PostRepository";
 
 export const createNewPost = async (
     user: User,
@@ -24,6 +24,14 @@ export const createNewPost = async (
         post.user = user;
 
         return await savePost(post);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getAllPosts = async () => {
+    try {
+        return await getLatestPosts();
     } catch (error) {
         throw error;
     }

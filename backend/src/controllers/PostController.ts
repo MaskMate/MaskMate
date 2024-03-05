@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createNewPost } from "../services/PostService";
+import { createNewPost, getAllPosts } from "../services/PostService";
 
 export const handleNewPost = async (req: Request, res: Response) => {
     const { user } = req;
@@ -19,6 +19,17 @@ export const handleNewPost = async (req: Request, res: Response) => {
     try {
         const savedPost = await createNewPost(user, title, content, category);
         return res.status(201).json({ data: { post: savedPost }, error: null });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleGetPost = async (req: Request, res: Response) => {
+    try {
+        const posts = await getAllPosts();
+        return res.json({ data: { posts }, error: null });
     } catch (error) {
         return res
             .status(500)
