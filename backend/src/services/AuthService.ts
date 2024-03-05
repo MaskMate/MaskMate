@@ -93,8 +93,6 @@ export const registerNewUser = async (
         await saveUser(user);
         return await saveProfile(profile);
     } catch (error) {
-        console.log(error);
-
         throw error;
     }
 };

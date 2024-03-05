@@ -45,6 +45,7 @@ export const getAllPosts = async () => {
 };
 
 export const editPost = async (
+    profile: Profile,
     postId: string,
     title?: string,
     content?: string
@@ -53,6 +54,9 @@ export const editPost = async (
         const post = await findPostByPostId(postId);
 
         if (!post) throw new Error("Invalid Post ID.");
+
+        if (post.profile.profileId != profile.profileId)
+            throw new Error("Unauthorized. Can't edit other's posts.");
         if (title) post.title = title;
         if (content) post.content = content;
 
@@ -62,10 +66,15 @@ export const editPost = async (
     }
 };
 
-export const deletePost = async (postId: string) => {
+export const deletePost = async (profile: Profile, postId: string) => {
     try {
-        const deletedPost = await deletePostByPostId(postId);
-        if (deletedPost.affected === 0) throw new Error("Invalid Post ID.");
+        const post = await findPostByPostId(postId);
+
+        if (!post) throw new Error("Invalid Post ID.");
+
+        if (post.profile.profileId != profile.profileId)
+            throw new Error("Unauthorized. Can't delete other's posts.");
+        await deletePostByPostId(postId);
     } catch (error) {
         throw error;
     }

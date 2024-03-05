@@ -17,7 +17,10 @@ export const getLatestPosts = async () => {
 };
 
 export const findPostByPostId = async (postId: string) => {
-    return await postRepo.findOneBy({ postId });
+    return await postRepo.findOne({
+        where: { postId },
+        relations: ["profile"],
+    });
 };
 
 export const deletePostByPostId = async (postId: string) => {

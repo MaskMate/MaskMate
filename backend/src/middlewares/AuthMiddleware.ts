@@ -29,9 +29,13 @@ const authorize = async (
             const decoded = jwt.verify(token, JWT_SECRET);
             if (typeof decoded === "object") {
                 request.profile = new Profile();
-                const { profileId, name, email } = decoded;
-                const profile = await findProfile(profileId, name, email);
+                const { profileId, username, email } = decoded;
+
+                if (!profileId || !username || !email)
+                    throw new Error("Token is invalid");
+                const profile = await findProfile(profileId, username, email);
                 if (!profile) throw new Error("profile not found");
+
                 request.profile = profile;
                 next();
             } else {
