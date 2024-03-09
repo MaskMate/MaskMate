@@ -1,5 +1,4 @@
 import { Post } from "../db/entities/PostEntity";
-import { User } from "../db/entities/UserEntity";
 import { PostCategories } from "../constants/Categories";
 import { getCategory } from "../db/repositories/CategoryRepository";
 import {
@@ -8,7 +7,6 @@ import {
     getLatestPosts,
     savePost,
 } from "../db/repositories/PostRepository";
-import { MissingDeleteDateColumnError } from "typeorm/error/MissingDeleteDateColumnError";
 import { Profile } from "../db/entities/ProfileEntity";
 import {
     findLikeByPostIdAndProfileId,

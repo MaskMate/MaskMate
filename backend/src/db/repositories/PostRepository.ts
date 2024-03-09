@@ -23,6 +23,12 @@ export const findPostByPostId = async (postId: string) => {
     });
 };
 
+export const getPostByPostId = async (postId: string) => {
+    return await postRepo.findOne({
+        where: { postId },
+    });
+};
+
 export const deletePostByPostId = async (postId: string) => {
     return await postRepo.delete({ postId });
 };

@@ -15,4 +15,5 @@ PostRouter.post("/", authorize, handleNewPost);
 PostRouter.put("/", authorize, handleEditPost);
 PostRouter.delete("/", authorize, handleDeletePost);
 PostRouter.put("/like", authorize, handleLikePost);
+
 export default PostRouter;
