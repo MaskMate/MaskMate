@@ -5,6 +5,7 @@ import dataSource from "./db/postgres.config";
 import AuthRouter from "./router/AuthRouter";
 import PostRouter from "./router/PostRouter";
 import CommentRouter from "./router/CommentRouter";
+import ReplyRouter from "./router/ReplyRouter";
 
 dotenv.config();
 
@@ -27,5 +28,6 @@ dataSource
 app.use("/api/auth", AuthRouter);
 app.use("/api/post", PostRouter);
 app.use("/api/comment", CommentRouter);
+app.use("/api/reply", ReplyRouter);
 
 app.listen(port, () => console.log(`Server is running on ${port}!`));

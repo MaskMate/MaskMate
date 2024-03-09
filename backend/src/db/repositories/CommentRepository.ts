@@ -10,9 +10,7 @@ export const saveComment = async (comment: Comment) => {
 
 export const getCommentByPostId = async (post: Post) => {
     return await commentRepo.find({
-        relations: {
-            profile: true,
-        },
+        relations: ["profile"],
         where: {
             post: post,
         },
@@ -23,6 +21,11 @@ export const getCommentByCommentId = async (commentId: string) => {
     return await commentRepo.findOne({
         where: { commentId: commentId },
         relations: ["profile", "post"],
+    });
+};
+export const getOnlyCommentByCommentId = async (commentId: string) => {
+    return await commentRepo.findOne({
+        where: { commentId },
     });
 };
 

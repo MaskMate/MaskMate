@@ -10,6 +10,8 @@ import { Profile } from "./entities/ProfileEntity";
 import { PostLike } from "./entities/PostLikeEntity";
 import { Comment } from "./entities/CommentEntity";
 import { CommentLike } from "./entities/CommentLikeEntity";
+import { Reply } from "./entities/ReplyEntity";
+import { ReplyLike } from "./entities/ReplyLikeEntity";
 
 const dataSource = new DataSource({
     type: "postgres",
@@ -24,11 +26,13 @@ const dataSource = new DataSource({
         Profile,
         Otp,
         University,
-        Post,
         Category,
+        Post,
         PostLike,
         Comment,
         CommentLike,
+        Reply,
+        ReplyLike,
     ],
     migrations: [AddCategories1709573550000, AddUniversites1709573535718],
     migrationsTableName: "migrations",
