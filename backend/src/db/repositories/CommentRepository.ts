@@ -22,6 +22,10 @@ export const getCommentByPostId = async (post: Post) => {
 export const getCommentByCommentId = async (commentId: string) => {
     return await commentRepo.findOne({
         where: { commentId: commentId },
-        relations: ["profile"],
+        relations: ["profile", "post"],
     });
+};
+
+export const deleteCommentByCommentId = async (commentId: string) => {
+    return await commentRepo.delete({ commentId: commentId });
 };

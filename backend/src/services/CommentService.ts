@@ -1,6 +1,7 @@
 import { Comment } from "../db/entities/CommentEntity";
 import { Profile } from "../db/entities/ProfileEntity";
 import {
+    deleteCommentByCommentId,
     getCommentByCommentId,
     getCommentByPostId,
     saveComment,
@@ -55,6 +56,21 @@ export const updateComment = async (
 
         existingComment.comment = comment;
         return await saveComment(existingComment);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const deleteComment = async (profile: Profile, commentId: string) => {
+    try {
+        const existingComment = await getCommentByCommentId(commentId);
+        if (!existingComment) throw new Error("Invalid Comment ID.");
+        if (existingComment.profile.profileId != profile.profileId)
+            throw new Error("Unauthorized. Can't delete other's comments.");
+
+        await deleteCommentByCommentId(commentId);
+        existingComment.post.commentCount -= 1;
+        await savePost(existingComment.post);
     } catch (error) {
         throw error;
     }

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Profile } from "../db/entities/ProfileEntity";
 import {
     createNewComment,
+    deleteComment,
     getAllComments,
     updateComment,
 } from "../services/CommentService";
@@ -59,6 +60,25 @@ export const handleEditComment = async (req: Request, res: Response) => {
         return res
             .status(200)
             .json({ data: { comment: updatedComment }, error: null });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleDeleteComment = async (req: Request, res: Response) => {
+    const profile = req.profile as Profile;
+    const { commentId } = req.body;
+
+    if (!commentId)
+        return res
+            .status(400)
+            .json({ data: null, error: "Missing Comment ID." });
+
+    try {
+        await deleteComment(profile, commentId);
+        return res.status(200).json({ data: null, error: null });
     } catch (error) {
         return res
             .status(500)
