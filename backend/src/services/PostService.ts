@@ -21,29 +21,21 @@ export const createNewPost = async (
     content: string,
     category: PostCategories
 ) => {
-    try {
-        const postCategory = await getCategory(category);
-        if (!postCategory) throw new Error("Invalid Category");
+    const postCategory = await getCategory(category);
+    if (!postCategory) throw new Error("Invalid Category");
 
-        const post = new Post();
-        post.title = title;
-        post.content = content;
-        post.category = postCategory;
-        post.createdAt = new Date();
-        post.profile = profile;
+    const post = new Post();
+    post.title = title;
+    post.content = content;
+    post.category = postCategory;
+    post.createdAt = new Date();
+    post.profile = profile;
 
-        return await savePost(post);
-    } catch (error) {
-        throw error;
-    }
+    return await savePost(post);
 };
 
 export const getAllPosts = async () => {
-    try {
-        return await getLatestPosts();
-    } catch (error) {
-        throw error;
-    }
+    return await getLatestPosts();
 };
 
 export const editPost = async (
@@ -52,34 +44,26 @@ export const editPost = async (
     title?: string,
     content?: string
 ) => {
-    try {
-        const post = await findPostByPostId(postId);
+    const post = await findPostByPostId(postId);
 
-        if (!post) throw new Error("Invalid Post ID.");
+    if (!post) throw new Error("Invalid Post ID.");
 
-        if (post.profile.profileId != profile.profileId)
-            throw new Error("Unauthorized. Can't edit other's posts.");
-        if (title) post.title = title;
-        if (content) post.content = content;
+    if (post.profile.profileId != profile.profileId)
+        throw new Error("Unauthorized. Can't edit other's posts.");
+    if (title) post.title = title;
+    if (content) post.content = content;
 
-        return await savePost(post);
-    } catch (error) {
-        throw error;
-    }
+    return await savePost(post);
 };
 
 export const deletePost = async (profile: Profile, postId: string) => {
-    try {
-        const post = await findPostByPostId(postId);
+    const post = await findPostByPostId(postId);
 
-        if (!post) throw new Error("Invalid Post ID.");
+    if (!post) throw new Error("Invalid Post ID.");
 
-        if (post.profile.profileId != profile.profileId)
-            throw new Error("Unauthorized. Can't delete other's posts.");
-        await deletePostByPostId(postId);
-    } catch (error) {
-        throw error;
-    }
+    if (post.profile.profileId != profile.profileId)
+        throw new Error("Unauthorized. Can't delete other's posts.");
+    await deletePostByPostId(postId);
 };
 
 export const likePost = async (
@@ -87,28 +71,24 @@ export const likePost = async (
     postId: string,
     liked: boolean
 ) => {
-    try {
-        const post = await findPostByPostId(postId);
-        if (!post) throw new Error("Invalid Post ID.");
-        const alreadyLiked = await findPostLikeByProfileIdAndPostId(
-            profileId,
-            postId
-        );
-        if ((alreadyLiked && liked) || (!alreadyLiked && !liked)) return post;
+    const post = await findPostByPostId(postId);
+    if (!post) throw new Error("Invalid Post ID.");
+    const alreadyLiked = await findPostLikeByProfileIdAndPostId(
+        profileId,
+        postId
+    );
+    if ((alreadyLiked && liked) || (!alreadyLiked && !liked)) return post;
 
-        if (alreadyLiked) {
-            await removePostLikeByProfileIdAndPostId(profileId, postId);
-            post.like -= 1;
-        } else {
-            const like = new PostLike();
-            like.postId = postId;
-            like.profileId = profileId;
-            await savePostLike(like);
-            post.like += 1;
-        }
-
-        return await savePost(post);
-    } catch (error) {
-        throw error;
+    if (alreadyLiked) {
+        await removePostLikeByProfileIdAndPostId(profileId, postId);
+        post.like -= 1;
+    } else {
+        const like = new PostLike();
+        like.postId = postId;
+        like.profileId = profileId;
+        await savePostLike(like);
+        post.like += 1;
     }
+
+    return await savePost(post);
 };

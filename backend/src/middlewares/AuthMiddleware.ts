@@ -1,16 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../db/entities/UserEntity";
 import { findProfile } from "../db/repositories/ProfileRepository";
 import { Profile } from "../db/entities/ProfileEntity";
 declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Express {
         interface Request {
             profile?: Profile;
         }
     }
 }
-
 const authorize = async (
     request: Request,
     response: Response,

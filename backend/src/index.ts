@@ -21,7 +21,7 @@ dataSource
     .then(() => {
         console.log(`Connected to ${database} database!`);
     })
-    .catch((error) => {
+    .catch(error => {
         console.error("Error during Data Source initialization", error);
     });
 

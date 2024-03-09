@@ -24,13 +24,13 @@ export class Comment {
     @Column({ name: "reply_count", type: "int", default: 0 })
     replyCount: number;
 
-    @ManyToOne(() => Profile, (profile) => profile.comments)
+    @ManyToOne(() => Profile, profile => profile.comments)
     profile: Profile;
 
-    @ManyToOne(() => Post, (post) => post.comments)
+    @ManyToOne(() => Post, post => post.comments)
     post: Post;
 
-    @OneToMany(() => Reply, (reply) => reply.comment)
+    @OneToMany(() => Reply, reply => reply.comment)
     replies: Reply[];
 
     @CreateDateColumn({ name: "created_at", type: "timestamp" })

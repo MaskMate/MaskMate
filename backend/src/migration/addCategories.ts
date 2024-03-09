@@ -46,7 +46,7 @@ export class AddCategories1709573550000 implements MigrationInterface {
     ];
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        const categories = this.categories.map((item) => {
+        const categories = this.categories.map(item => {
             const category = new Category();
             category.name = item.name;
             category.logo = item.logo;

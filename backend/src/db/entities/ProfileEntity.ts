@@ -27,12 +27,12 @@ export class Profile {
     @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
-    @ManyToOne(() => University, (university) => university.profiles)
+    @ManyToOne(() => University, university => university.profiles)
     university: University;
 
-    @OneToMany(() => Post, (post) => post.profile)
+    @OneToMany(() => Post, post => post.profile)
     posts: Post[];
 
-    @OneToMany(() => Comment, (comment) => comment.profile)
+    @OneToMany(() => Comment, comment => comment.profile)
     comments: Comment[];
 }

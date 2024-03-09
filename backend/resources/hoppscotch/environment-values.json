@@ -1,22 +1,22 @@
 {
-  "v": 1,
-  "id": "2",
-  "name": "maskmate",
-  "variables": [
-    {
-      "key": "host",
-      "value": "localhost:8000",
-      "secret": false
-    },
-    {
-      "key": "token",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0NzA5NjFhZC0wNTUwLTQwYjYtYjZjYS1mNDVlYTBmZTVmYzUiLCJlbWFpbCI6InRlc3RAaWl0ZC5hYy5pbiIsInVzZXJuYW1lIjoiSURSck9WIiwiaWF0IjoxNzA5OTkyMTY0LCJleHAiOjE3MTI1ODQxNjR9.DKIuYv0xmsltzIbZpXjzAgAIPYjgIJDzrZIZvIVk3cY",
-      "secret": false
-    },
-    {
-      "key": "email",
-      "value": "test@iitd.ac.in",
-      "secret": false
-    }
-  ]
+    "v": 1,
+    "id": "2",
+    "name": "maskmate",
+    "variables": [
+        {
+            "key": "host",
+            "value": "localhost:8000",
+            "secret": false
+        },
+        {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0NzA5NjFhZC0wNTUwLTQwYjYtYjZjYS1mNDVlYTBmZTVmYzUiLCJlbWFpbCI6InRlc3RAaWl0ZC5hYy5pbiIsInVzZXJuYW1lIjoiSURSck9WIiwiaWF0IjoxNzA5OTkyMTY0LCJleHAiOjE3MTI1ODQxNjR9.DKIuYv0xmsltzIbZpXjzAgAIPYjgIJDzrZIZvIVk3cY",
+            "secret": false
+        },
+        {
+            "key": "email",
+            "value": "test@iitd.ac.in",
+            "secret": false
+        }
+    ]
 }

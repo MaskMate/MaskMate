@@ -27,6 +27,6 @@ export class University {
     @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
-    @OneToMany(() => Profile, (profile) => profile.university)
+    @OneToMany(() => Profile, profile => profile.university)
     profiles: Profile[];
 }

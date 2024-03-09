@@ -31,39 +31,27 @@ import {
 } from "../db/repositories/ProfileRepository";
 
 export const registerEmail = async (email: string) => {
-    try {
-        await validateEmail(email);
-        await deleteOldEmail(email);
-        const otpValue = await generateOtp();
-        sendEmail(email, otpValue);
-        const otp = new Otp();
-        otp.email = email;
-        otp.otp = otpValue;
-        return await saveOtp(otp);
-    } catch (error) {
-        throw error;
-    }
+    await validateEmail(email);
+    await deleteOldEmail(email);
+    const otpValue = await generateOtp();
+    sendEmail(email, otpValue);
+    const otp = new Otp();
+    otp.email = email;
+    otp.otp = otpValue;
+    return await saveOtp(otp);
 };
 
 export const validateVerificationCode = async (email: string, code: string) => {
-    try {
-        const otp = await validateCode(email, code);
-        otp.verified = true;
-        await verifyEmail(otp);
-    } catch (error) {
-        throw error;
-    }
+    const otp = await validateCode(email, code);
+    otp.verified = true;
+    await verifyEmail(otp);
 };
 export const getSignupDetails = async (email: string) => {
-    try {
-        const username = await generateUsername();
-        const domain = email.split("@")[1];
-        const university = await findUniversityByDomain(domain);
-        if (university) return { username, universityName: university.name };
-        return { username, universityName: null };
-    } catch (error) {
-        throw error;
-    }
+    const username = await generateUsername();
+    const domain = email.split("@")[1];
+    const university = await findUniversityByDomain(domain);
+    if (university) return { username, universityName: university.name };
+    return { username, universityName: null };
 };
 
 export const registerNewUser = async (
@@ -72,51 +60,43 @@ export const registerNewUser = async (
     username: string,
     universityName: string
 ) => {
-    try {
-        await deleteOtpbyEmail(email);
-        await validateCredentials(username, email, password);
-        const hashedPassword = await hashPassword(password);
-        const domain = email.split("@")[1];
-        let university = await findUniversityByDomain(domain);
-        if (university === null) {
-            let newUniversity = new University();
-            newUniversity.domain = domain;
-            newUniversity.name = universityName;
-            university = await saveUniversity(newUniversity);
-        }
-
-        const user = new User();
-        user.email = email;
-        user.password = hashedPassword;
-
-        const profile = new Profile();
-        profile.username = username;
-        profile.email = email;
-        profile.university = university;
-
-        await saveUser(user);
-        return await saveProfile(profile);
-    } catch (error) {
-        throw error;
+    await deleteOtpbyEmail(email);
+    await validateCredentials(username, email, password);
+    const hashedPassword = await hashPassword(password);
+    const domain = email.split("@")[1];
+    let university = await findUniversityByDomain(domain);
+    if (university === null) {
+        const newUniversity = new University();
+        newUniversity.domain = domain;
+        newUniversity.name = universityName;
+        university = await saveUniversity(newUniversity);
     }
+
+    const user = new User();
+    user.email = email;
+    user.password = hashedPassword;
+
+    const profile = new Profile();
+    profile.username = username;
+    profile.email = email;
+    profile.university = university;
+
+    await saveUser(user);
+    return await saveProfile(profile);
 };
 
 export const loginUser = async (email: string, password: string) => {
-    try {
-        validateEmailFormat(email);
+    validateEmailFormat(email);
 
-        const user = await findUserByEmail(email);
-        if (!user) throw new Error("Invalid Email ID");
-        const isPasswordMatch = await comparePassword(password, user.password);
-        if (!isPasswordMatch) throw new Error("Invalid Email ID or Password");
+    const user = await findUserByEmail(email);
+    if (!user) throw new Error("Invalid Email ID");
+    const isPasswordMatch = await comparePassword(password, user.password);
+    if (!isPasswordMatch) throw new Error("Invalid Email ID or Password");
 
-        const profile = await findProfileByEmail(email);
-        if (!profile) throw new Error("Invalid Email ID");
+    const profile = await findProfileByEmail(email);
+    if (!profile) throw new Error("Invalid Email ID");
 
-        return profile;
-    } catch (error) {
-        throw error;
-    }
+    return profile;
 };
 
 const validateEmail = async (email: string) => {

@@ -5,7 +5,7 @@ import fs from "fs";
 export class AddUniversites1709573535718 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         const requiredData = this.getRequiredData();
-        const universities = requiredData.map((item) => {
+        const universities = requiredData.map(item => {
             const university = new University();
             university.name = item.name;
             university.domain = item.domain;
@@ -23,11 +23,11 @@ export class AddUniversites1709573535718 implements MigrationInterface {
             "public/json/world_universities_and_domains.json",
             "utf8"
         );
-        let universityDetailsData = JSON.parse(universityDetailsFile);
-        let result: { name: string; domain: string; country: string }[] = [];
+        const universityDetailsData = JSON.parse(universityDetailsFile);
+        const result: { name: string; domain: string; country: string }[] = [];
 
-        for (let university of universityDetailsData) {
-            for (let domain of university.domains) {
+        for (const university of universityDetailsData) {
+            for (const domain of university.domains) {
                 result.push({
                     name: university.name,
                     domain: domain,

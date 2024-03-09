@@ -22,7 +22,7 @@ export class Reply {
     @ManyToOne(() => Profile)
     profile: Profile;
 
-    @ManyToOne(() => Comment, (comment) => comment.replies)
+    @ManyToOne(() => Comment, comment => comment.replies)
     comment: Comment;
 
     @CreateDateColumn({ name: "created_at", type: "timestamp" })

@@ -24,6 +24,6 @@ export class Category {
     @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
-    @OneToMany(() => Post, (post) => post.category)
+    @OneToMany(() => Post, post => post.category)
     posts: Post[];
 }
