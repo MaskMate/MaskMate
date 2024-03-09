@@ -4,9 +4,11 @@ import {
     Column,
     CreateDateColumn,
     ManyToOne,
+    OneToMany,
 } from "typeorm";
 import { Category } from "./CategoryEntity";
 import { Profile } from "./ProfileEntity";
+import { Comment } from "./CommentEntity";
 
 @Entity()
 export class Post {
@@ -22,6 +24,9 @@ export class Post {
     @Column({ name: "like", type: "int", default: 0 })
     like: number;
 
+    @Column({ name: "comment_count", type: "int", default: 0 })
+    commentCount: number;
+
     @CreateDateColumn({ name: "created_at", type: "timestamp" })
     createdAt: Date;
 
@@ -30,4 +35,7 @@ export class Post {
 
     @ManyToOne(() => Profile, (profile) => profile.posts)
     profile: Profile;
+
+    @OneToMany(() => Comment, (comment) => comment.post)
+    comments: Comment[];
 }

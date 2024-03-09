@@ -8,6 +8,7 @@ import { AddCategories1709573550000 } from "../migration/addCategories";
 import { AddUniversites1709573535718 } from "../migration/addUniversites";
 import { Profile } from "./entities/ProfileEntity";
 import { Like } from "./entities/LikeEntity";
+import { Comment } from "./entities/CommentEntity";
 
 const dataSource = new DataSource({
     type: "postgres",
@@ -17,7 +18,7 @@ const dataSource = new DataSource({
     password: process.env.POSTGRES_PASSWORD || "makemask_password",
     database: process.env.POSTGRES_DATABASE || "makemask",
     // logging: true,
-    entities: [User, Profile, Otp, University, Post, Category, Like],
+    entities: [User, Profile, Otp, University, Post, Category, Like, Comment],
     migrations: [AddCategories1709573550000, AddUniversites1709573535718],
     migrationsTableName: "migrations",
     synchronize: true,

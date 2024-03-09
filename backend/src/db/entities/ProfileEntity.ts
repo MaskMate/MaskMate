@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { University } from "./UniversityEntity";
 import { Post } from "./PostEntity";
+import { Comment } from "./CommentEntity";
 
 @Entity()
 export class Profile {
@@ -31,4 +32,7 @@ export class Profile {
 
     @OneToMany(() => Post, (post) => post.profile)
     posts: Post[];
+
+    @OneToMany(() => Comment, (comment) => comment.profile)
+    comments: Comment[];
 }
