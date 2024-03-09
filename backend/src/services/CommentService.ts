@@ -1,6 +1,7 @@
 import { Comment } from "../db/entities/CommentEntity";
 import { Profile } from "../db/entities/ProfileEntity";
 import {
+    getCommentByCommentId,
     getCommentByPostId,
     saveComment,
 } from "../db/repositories/CommentRepository";
@@ -35,6 +36,25 @@ export const createNewComment = async (
         post.commentCount += 1;
         await savePost(post);
         return savedComment;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const updateComment = async (
+    profile: Profile,
+    commentId: string,
+    comment: string
+) => {
+    try {
+        const existingComment = await getCommentByCommentId(commentId);
+
+        if (!existingComment) throw new Error("Invalid Comment ID.");
+        if (existingComment.profile.profileId != profile.profileId)
+            throw new Error("Unauthorized. Can't edit other's comments.");
+
+        existingComment.comment = comment;
+        return await saveComment(existingComment);
     } catch (error) {
         throw error;
     }

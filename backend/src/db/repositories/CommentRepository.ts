@@ -18,3 +18,10 @@ export const getCommentByPostId = async (post: Post) => {
         },
     });
 };
+
+export const getCommentByCommentId = async (commentId: string) => {
+    return await commentRepo.findOne({
+        where: { commentId: commentId },
+        relations: ["profile"],
+    });
+};
