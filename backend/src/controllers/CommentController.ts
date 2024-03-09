@@ -4,6 +4,7 @@ import {
     createNewComment,
     deleteComment,
     getAllComments,
+    likeComment,
     updateComment,
 } from "../services/CommentService";
 
@@ -79,6 +80,30 @@ export const handleDeleteComment = async (req: Request, res: Response) => {
     try {
         await deleteComment(profile, commentId);
         return res.status(200).json({ data: null, error: null });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleLikeComment = async (req: Request, res: Response) => {
+    const profile = req.profile as Profile;
+    const { commentId, liked } = req.body;
+
+    if (!commentId)
+        return res
+            .status(400)
+            .json({ data: null, error: "Missing Comment ID." });
+    try {
+        const likedComment = await likeComment(
+            profile.profileId,
+            commentId,
+            liked
+        );
+        return res
+            .status(200)
+            .json({ data: { comment: likedComment }, error: null });
     } catch (error) {
         return res
             .status(500)

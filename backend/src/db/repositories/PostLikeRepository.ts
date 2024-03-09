@@ -1,13 +1,13 @@
-import { Like } from "../entities/LikeEntity";
+import { PostLike } from "../entities/PostLikeEntity";
 import dataSource from "../postgres.config";
 
-const likeRepository = dataSource.getRepository(Like);
+const likeRepository = dataSource.getRepository(PostLike);
 
-export const saveLike = async (like: Like) => {
+export const savePostLike = async (like: PostLike) => {
     return await likeRepository.save(like);
 };
 
-export const findLikeByPostIdAndProfileId = async (
+export const findPostLikeByProfileIdAndPostId = async (
     profileId: string,
     postId: string
 ) => {
@@ -16,7 +16,7 @@ export const findLikeByPostIdAndProfileId = async (
     });
 };
 
-export const removeLikeByPostIdAndProfileId = async (
+export const removePostLikeByProfileIdAndPostId = async (
     profileId: string,
     postId: string
 ) => {

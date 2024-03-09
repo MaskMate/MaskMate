@@ -9,11 +9,11 @@ import {
 } from "../db/repositories/PostRepository";
 import { Profile } from "../db/entities/ProfileEntity";
 import {
-    findLikeByPostIdAndProfileId,
-    removeLikeByPostIdAndProfileId,
-    saveLike,
-} from "../db/repositories/LikeRepository";
-import { Like } from "../db/entities/LikeEntity";
+    findPostLikeByProfileIdAndPostId,
+    removePostLikeByProfileIdAndPostId,
+    savePostLike,
+} from "../db/repositories/PostLikeRepository";
+import { PostLike } from "../db/entities/PostLikeEntity";
 
 export const createNewPost = async (
     profile: Profile,
@@ -90,20 +90,20 @@ export const likePost = async (
     try {
         const post = await findPostByPostId(postId);
         if (!post) throw new Error("Invalid Post ID.");
-        const alreadyLiked = await findLikeByPostIdAndProfileId(
+        const alreadyLiked = await findPostLikeByProfileIdAndPostId(
             profileId,
             postId
         );
         if ((alreadyLiked && liked) || (!alreadyLiked && !liked)) return post;
 
         if (alreadyLiked) {
-            await removeLikeByPostIdAndProfileId(profileId, postId);
+            await removePostLikeByProfileIdAndPostId(profileId, postId);
             post.like -= 1;
         } else {
-            const like = new Like();
+            const like = new PostLike();
             like.postId = postId;
             like.profileId = profileId;
-            await saveLike(like);
+            await savePostLike(like);
             post.like += 1;
         }
 

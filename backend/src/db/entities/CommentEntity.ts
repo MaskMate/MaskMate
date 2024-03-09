@@ -18,6 +18,9 @@ export class Comment {
     @Column({ type: "varchar", name: "comment" })
     comment: string;
 
+    @Column({ name: "like", type: "int", default: 0 })
+    like: number;
+
     @ManyToOne(() => Profile, (profile) => profile.comments)
     profile: Profile;
 
