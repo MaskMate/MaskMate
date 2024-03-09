@@ -3,7 +3,7 @@ import {
     handleGetComment,
     handleNewComment,
     handleEditComment,
-} from "../controllers/ CommentController";
+} from "../controllers/CommentController";
 import authorize from "../middlewares/AuthMiddleware";
 
 const CommentRouter = Router();
