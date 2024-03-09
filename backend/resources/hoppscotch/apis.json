@@ -1,0 +1,414 @@
+{
+    "v": 2,
+    "name": "MaskMate",
+    "folders": [
+        {
+            "v": 2,
+            "name": "Auth",
+            "folders": [],
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/auth/signup",
+                    "name": "register email",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": { "authType": "none", "authActive": true },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\": \"<<email>>\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/auth/code",
+                    "name": "validate code",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": { "authType": "none", "authActive": true },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\": \"<<email>>\",\n  \"code\": \"BVpcdO\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/auth/signupDetails",
+                    "name": "signup details",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": { "authType": "none", "authActive": true },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\": \"<<email>>\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/auth/register",
+                    "name": "register user",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": { "authType": "none", "authActive": true },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\": \"<<email>>\",\n  \"username\": \"IDRrOV\",\n  \"universityName\": \"Test Institute\",\n  \"password\": \"testiitd\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/auth/login",
+                    "name": "login user",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": { "authType": "none", "authActive": true },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"email\": \"test@iitd.ac.in\",\n  \"password\": \"testiitd\"\n}"
+                    }
+                }
+            ],
+            "auth": { "authType": "inherit", "authActive": true },
+            "headers": []
+        },
+        {
+            "v": 2,
+            "name": "post",
+            "folders": [],
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/post/",
+                    "name": "create post",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"title\":\"Post 1\",\n  \"content\":\"This is my first post\",\n  \"category\":\"JOB\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/post/",
+                    "name": "get posts",
+                    "params": [],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": null,
+                        "body": "{\n  \"title\":\"Post 1\",\n  \"content\":\"This is my first post\",\n  \"category\":\"JOB\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/post/",
+                    "name": "edit post",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"postId\": \"e1537278-74af-4c11-8284-d5e36720bb1e\",\n  \"title\": \"Post 3\",\n  \"content\": \"This is my third post\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/post/",
+                    "name": "delete post",
+                    "params": [],
+                    "headers": [],
+                    "method": "DELETE",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n        \"postId\": \"e1537278-74af-4c11-8284-d5e36720bb1e\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/post/like",
+                    "name": "like post",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"postId\": \"e1537278-74af-4c11-8284-d5e36720bb1e\",\n  \"liked\": true\n}"
+                    }
+                }
+            ],
+            "auth": { "authType": "inherit", "authActive": true },
+            "headers": []
+        },
+        {
+            "v": 2,
+            "name": "comment",
+            "folders": [],
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/comment/15b34144-6fd9-4072-9cfa-79ff09e59004",
+                    "name": "get comments",
+                    "params": [],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "none",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": null,
+                        "body": "{\n\t\"postId\":\"2d3052f9-3a16-4892-ad02-03a6596ce37f\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/comment",
+                    "name": "create comment",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n\t\"postId\":\"15b34144-6fd9-4072-9cfa-79ff09e59004\",\n\t\"comment\":\"Here is my first comment\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/comment",
+                    "name": "edit comment",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n\t\"commentId\":\"5197f407-77a0-4134-8e2c-af3425a6069c\",\n\t\"comment\":\"Here is my 1st comment\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/comment",
+                    "name": "delete comment",
+                    "params": [],
+                    "headers": [],
+                    "method": "DELETE",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n\t\"commentId\":\"2311a4ac-e779-4263-bb02-b03b4d5d0226\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/comment/like",
+                    "name": "like comment",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"commentId\": \"2311a4ac-e779-4263-bb02-b03b4d5d0226\",\n  \"liked\": true\n}"
+                    }
+                }
+            ],
+            "auth": { "authType": "inherit", "authActive": true },
+            "headers": []
+        },
+        {
+            "v": 2,
+            "name": "reply",
+            "folders": [],
+            "requests": [
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/reply/eee370a8-d995-4268-b076-273c2df49a2c",
+                    "name": "get replies",
+                    "params": [],
+                    "headers": [],
+                    "method": "GET",
+                    "auth": {
+                        "authType": "none",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": null,
+                        "body": "{\n\t\"postId\":\"2d3052f9-3a16-4892-ad02-03a6596ce37f\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/reply",
+                    "name": "create reply",
+                    "params": [],
+                    "headers": [],
+                    "method": "POST",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n\t\"commentId\":\"eee370a8-d995-4268-b076-273c2df49a2c\",\n\t\"reply\":\"Here is my second reply\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/reply",
+                    "name": "edit reply",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n\t\"replyId\":\"913b70dd-c073-4cdd-b1ed-43acddce2e5e\",\n\t\"reply\":\"Here is my 1st reply\"\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/reply/like",
+                    "name": "like reply",
+                    "params": [],
+                    "headers": [],
+                    "method": "PUT",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n  \"replyId\": \"a07619f5-40c7-4fab-81c4-87afc37caba6\",\n  \"liked\": true\n}"
+                    }
+                },
+                {
+                    "v": "1",
+                    "endpoint": "http://<<host>>/api/reply",
+                    "name": "delete reply",
+                    "params": [],
+                    "headers": [],
+                    "method": "DELETE",
+                    "auth": {
+                        "authType": "bearer",
+                        "authActive": true,
+                        "token": "<<token>>"
+                    },
+                    "preRequestScript": "",
+                    "testScript": "",
+                    "body": {
+                        "contentType": "application/json",
+                        "body": "{\n\t\"replyId\":\"a07619f5-40c7-4fab-81c4-87afc37caba6\"\n}"
+                    }
+                }
+            ],
+            "auth": { "authType": "inherit", "authActive": true },
+            "headers": []
+        }
+    ],
+    "requests": [],
+    "auth": { "authType": "none", "authActive": true },
+    "headers": [],
+    "variables": [
+        { "key": "host", "value": "localhost:8000", "secret": false },
+        {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0NzA5NjFhZC0wNTUwLTQwYjYtYjZjYS1mNDVlYTBmZTVmYzUiLCJlbWFpbCI6InRlc3RAaWl0ZC5hYy5pbiIsInVzZXJuYW1lIjoiSURSck9WIiwiaWF0IjoxNzA5OTkyMTY0LCJleHAiOjE3MTI1ODQxNjR9.DKIuYv0xmsltzIbZpXjzAgAIPYjgIJDzrZIZvIVk3cY",
+            "secret": false
+        },
+        { "key": "email", "value": "test@iitd.ac.in", "secret": false }
+    ]
+}

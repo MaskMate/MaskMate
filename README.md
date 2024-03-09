@@ -32,4 +32,11 @@ To contribute to MaskMate or set up a local development environment, follow thes
 5. Start the backend server with the following command: `pnpm dev`.
 6. In a separate terminal window, execute database migrations by running `pnpm migrate`.
 
+### Local Testing
+
+1. Under `backend/resources/hoppscotch`, you can find 2 json files.
+    1. import `api.json` in the Workspace tab
+    2. Import `environment-values.json` in the Environments table
+    3. Select the Maskmate environment. And you are good to test the APIs.
+
 Feel free to reach out to our team for any further assistance or inquiries. Happy coding! 🚀
