@@ -10,6 +10,12 @@ import {
 } from "../db/repositories/PostRepository";
 import { MissingDeleteDateColumnError } from "typeorm/error/MissingDeleteDateColumnError";
 import { Profile } from "../db/entities/ProfileEntity";
+import {
+    findLikeByPostIdAndProfileId,
+    removeLikeByPostIdAndProfileId,
+    saveLike,
+} from "../db/repositories/LikeRepository";
+import { Like } from "../db/entities/LikeEntity";
 
 export const createNewPost = async (
     profile: Profile,
@@ -25,8 +31,6 @@ export const createNewPost = async (
         post.title = title;
         post.content = content;
         post.category = postCategory;
-        post.upvote = 0;
-        post.downvote = 0;
         post.createdAt = new Date();
         post.profile = profile;
 
@@ -75,6 +79,37 @@ export const deletePost = async (profile: Profile, postId: string) => {
         if (post.profile.profileId != profile.profileId)
             throw new Error("Unauthorized. Can't delete other's posts.");
         await deletePostByPostId(postId);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const likePost = async (
+    profileId: string,
+    postId: string,
+    liked: boolean
+) => {
+    try {
+        const post = await findPostByPostId(postId);
+        if (!post) throw new Error("Invalid Post ID.");
+        const alreadyLiked = await findLikeByPostIdAndProfileId(
+            profileId,
+            postId
+        );
+        if ((alreadyLiked && liked) || (!alreadyLiked && !liked)) return post;
+
+        if (alreadyLiked) {
+            await removeLikeByPostIdAndProfileId(profileId, postId);
+            post.like -= 1;
+        } else {
+            const like = new Like();
+            like.postId = postId;
+            like.profileId = profileId;
+            await saveLike(like);
+            post.like += 1;
+        }
+
+        return await savePost(post);
     } catch (error) {
         throw error;
     }

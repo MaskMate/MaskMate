@@ -4,6 +4,7 @@ import {
     deletePost,
     editPost,
     getAllPosts,
+    likePost,
 } from "../services/PostService";
 import { Profile } from "../db/entities/ProfileEntity";
 
@@ -72,6 +73,23 @@ export const handleDeletePost = async (req: Request, res: Response) => {
     try {
         await deletePost(profile, postId);
         return res.status(200).json({ data: null, error: null });
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ data: null, error: (error as Error).message });
+    }
+};
+
+export const handleLikePost = async (req: Request, res: Response) => {
+    const profile = req.profile as Profile;
+    const { postId, liked } = req.body;
+
+    if (!postId)
+        return res.status(400).json({ data: null, error: "Missing Post ID." });
+
+    try {
+        const likedPost = await likePost(profile.profileId, postId, liked);
+        return res.status(200).json({ data: { post: likedPost }, error: null });
     } catch (error) {
         return res
             .status(500)
