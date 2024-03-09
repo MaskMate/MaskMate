@@ -1,0 +1,41 @@
+{
+    "name": "maskmate",
+    "version": "0.0.1",
+    "description": "MaskMate",
+    "scripts": {
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+        "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" "
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MaskMate/MaskMate.git"
+    },
+    "keywords": [
+        "maskmate",
+        "social media app",
+        "student",
+        "university",
+        "postgres"
+    ],
+    "author": "Lokeswaran Aruljothy",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/MaskMate/MaskMate/issues"
+    },
+    "homepage": "https://github.com/MaskMate/MaskMate#readme",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^7.1.1",
+        "@typescript-eslint/parser": "^7.1.1",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-jsx-a11y": "^6.8.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-react": "^7.34.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-simple-import-sort": "^12.0.0",
+        "eslint-plugin-tailwindcss": "^3.14.3",
+        "prettier": "^3.2.5"
+    }
+}
