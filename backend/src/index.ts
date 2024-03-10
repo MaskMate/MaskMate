@@ -6,6 +6,7 @@ import AuthRouter from "@/routers/AuthRouter";
 import PostRouter from "@/routers/PostRouter";
 import CommentRouter from "@/routers/CommentRouter";
 import ReplyRouter from "@/routers/ReplyRouter";
+import cors from "cors";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const port = process.env.PORT || 8000;
 const database = process.env.POSTGRES_DATABASE || "";
 
 app.use(json());
+app.use(cors());
 
 dataSource
     .initialize()
