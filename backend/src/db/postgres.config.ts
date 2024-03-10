@@ -10,8 +10,8 @@ import Comment from "@/db/entities/CommentEntity";
 import CommentLike from "@/db/entities/CommentLikeEntity";
 import Reply from "@/db/entities/ReplyEntity";
 import ReplyLike from "@/db/entities/ReplyLikeEntity";
-import { AddCategories1709573550000 } from "@/migration/addCategories";
-import { AddUniversites1709573535718 } from "@/migration/addUniversites";
+import AddCategories1709573550000 from "@/migration/addCategories";
+import AddUniversites1709573535718 from "@/migration/addUniversites";
 
 const dataSource = new DataSource({
     type: "postgres",

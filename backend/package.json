@@ -6,7 +6,7 @@
     "scripts": {
         "build": "npx tsc",
         "start": "node dist/index.js",
-        "dev": "nodemon src/index.ts",
+        "dev": "nodemon -r tsconfig-paths/register src/index.ts",
         "migrate": "typeorm-ts-node-commonjs migration:run -d ./src/db/postgres.config.ts "
     },
     "repository": {
@@ -41,6 +41,7 @@
         "@types/jsonwebtoken": "^9.0.6",
         "nodemon": "^3.1.0",
         "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0",
         "typescript": "^5.3.3"
     }
 }
