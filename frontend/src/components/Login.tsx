@@ -9,6 +9,9 @@ import {
     Input,
 } from "@nextui-org/react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import axios from "axios";
 import { login } from "@/apis/auth";
 
 interface LoginProps {
@@ -39,17 +42,30 @@ const Login: FC<LoginProps> = props => {
         return password.length < 8;
     }, [password]);
 
-    const handleLogin = async () => {
-        if (isInvalidEmail || isInvalidPassword) {
-            console.log("failed");
-            return;
-        }
-        const data = await login(email, password);
-        if (data) {
+    const { isPending, mutate } = useMutation({
+        mutationFn: (loginData: { email: string; password: string }) =>
+            login(loginData),
+        onSuccess: () => {
             onOpenChange();
+            toast.success("Login successful");
             setEmail("");
             setPassword("");
+        },
+        onError: error => {
+            if (axios.isAxiosError(error)) {
+                toast.error(error.response?.data.error);
+            } else {
+                console.error(error);
+                toast.error("Something went wrong, please try again later");
+            }
+        },
+    });
+
+    const handleLogin = async () => {
+        if (isInvalidEmail || isInvalidPassword) {
+            return;
         }
+        mutate({ email, password });
     };
 
     return (
@@ -68,7 +84,7 @@ const Login: FC<LoginProps> = props => {
                             <ModalBody>
                                 <Input
                                     autoFocus
-                                    required
+                                    isRequired
                                     size={"lg"}
                                     placeholder="Enter your email"
                                     variant="bordered"
@@ -86,6 +102,7 @@ const Login: FC<LoginProps> = props => {
                                 />
                                 <Input
                                     size={"lg"}
+                                    isRequired
                                     placeholder="Enter your password"
                                     endContent={
                                         <button
@@ -100,7 +117,6 @@ const Login: FC<LoginProps> = props => {
                                     }
                                     type={isVisible ? "text" : "password"}
                                     variant="bordered"
-                                    required
                                     value={password}
                                     isInvalid={isInvalidPassword}
                                     color={
@@ -117,11 +133,18 @@ const Login: FC<LoginProps> = props => {
                                 <Button
                                     color="danger"
                                     variant="flat"
-                                    onPress={onClose}>
+                                    onClick={onClose}>
                                     Close
                                 </Button>
-                                <Button color="primary" onClick={handleLogin}>
-                                    Sign in
+                                <Button
+                                    isDisabled={
+                                        email === "" ||
+                                        password === "" ||
+                                        isPending
+                                    }
+                                    color="primary"
+                                    onClick={handleLogin}>
+                                    {isPending ? "Logging in..." : "Sign in"}
                                 </Button>
                             </ModalFooter>
                         </>
