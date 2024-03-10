@@ -1,7 +1,7 @@
 import { CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
-export class PostLike {
+export default class PostLike {
     @PrimaryColumn({ name: "profile_id" })
     profileId: string;
 

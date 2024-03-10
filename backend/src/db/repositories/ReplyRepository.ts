@@ -1,5 +1,5 @@
-import { Comment } from "@/db/entities/CommentEntity";
-import { Reply } from "@/db/entities/ReplyEntity";
+import Comment from "@/db/entities/CommentEntity";
+import Reply from "@/db/entities/ReplyEntity";
 import dataSource from "@/db/postgres.config";
 
 const replyRepo = dataSource.getRepository(Reply);
@@ -14,7 +14,7 @@ export const getReplyByCommentId = async (comment: Comment) => {
         .where("reply.comment = :commentId", { commentId: comment.commentId })
         .getMany();
     // return await replyRepo.find({
-    //     where: { comment },
+    //     where: Comment,
     //     relations: ["comment"],
     // });
 };

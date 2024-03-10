@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Otp {
+export default class Otp {
     @PrimaryGeneratedColumn("uuid", { name: "otp_id" })
     otpId: string;
 

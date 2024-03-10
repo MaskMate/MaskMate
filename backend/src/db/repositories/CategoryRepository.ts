@@ -1,5 +1,5 @@
 import { PostCategories } from "@/constants/Categories";
-import { Category } from "@/db/entities/CategoryEntity";
+import Category from "@/db/entities/CategoryEntity";
 import dataSource from "@/db/postgres.config";
 
 const categoryRepo = dataSource.getRepository(Category);

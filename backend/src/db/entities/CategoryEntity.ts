@@ -7,10 +7,10 @@ import {
     PrimaryGeneratedColumn,
 } from "typeorm";
 import { PostCategories } from "@/constants/Categories";
-import { Post } from "./PostEntity";
+import Post from "./PostEntity";
 
 @Entity()
-export class Category {
+export default class Category {
     @PrimaryGeneratedColumn("uuid", { name: "category_id" })
     categoryId: string;
 

@@ -1,4 +1,4 @@
-import { Post } from "@/db/entities/PostEntity";
+import Post from "@/db/entities/PostEntity";
 import { PostCategories } from "@/constants/Categories";
 import { getCategory } from "@/db/repositories/CategoryRepository";
 import {
@@ -7,13 +7,13 @@ import {
     getLatestPosts,
     savePost,
 } from "@/db/repositories/PostRepository";
-import { Profile } from "@/db/entities/ProfileEntity";
+import Profile from "@/db/entities/ProfileEntity";
 import {
     findPostLikeByProfileIdAndPostId,
     removePostLikeByProfileIdAndPostId,
     savePostLike,
 } from "@/db/repositories/PostLikeRepository";
-import { PostLike } from "@/db/entities/PostLikeEntity";
+import PostLike from "@/db/entities/PostLikeEntity";
 
 export const createNewPost = async (
     profile: Profile,

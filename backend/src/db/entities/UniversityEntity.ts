@@ -6,10 +6,10 @@ import {
     Index,
     OneToMany,
 } from "typeorm";
-import { Profile } from "./ProfileEntity";
+import Profile from "./ProfileEntity";
 
 @Entity()
-export class University {
+export default class University {
     @PrimaryGeneratedColumn("uuid", { name: "university_id" })
     universityId: string;
 

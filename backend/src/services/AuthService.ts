@@ -1,6 +1,6 @@
-import { Otp } from "@/db/entities/OtpEntity";
-import { University } from "@/db/entities/UniversityEntity";
-import { User } from "@/db/entities/UserEntity";
+import Otp from "@/db/entities/OtpEntity";
+import University from "@/db/entities/UniversityEntity";
+import User from "@/db/entities/UserEntity";
 import {
     deleteOldEmail,
     deleteOtpbyEmail,
@@ -23,7 +23,7 @@ import {
     generateUsername,
     hashPassword,
 } from "@/utils/AuthHelper";
-import { Profile } from "@/db/entities/ProfileEntity";
+import Profile from "@/db/entities/ProfileEntity";
 import {
     findProfileByEmail,
     isCredentialTaken,

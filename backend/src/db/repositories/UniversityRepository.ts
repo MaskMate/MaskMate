@@ -1,4 +1,4 @@
-import { University } from "@/db/entities/UniversityEntity";
+import University from "@/db/entities/UniversityEntity";
 import dataSource from "@/db/postgres.config";
 
 const universityRepo = dataSource.getRepository(University);

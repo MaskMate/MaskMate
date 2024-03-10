@@ -1,6 +1,6 @@
-import { Reply } from "@/db/entities/ReplyEntity";
-import { ReplyLike } from "@/db/entities/ReplyLikeEntity";
-import { Profile } from "@/db/entities/ProfileEntity";
+import Reply from "@/db/entities/ReplyEntity";
+import ReplyLike from "@/db/entities/ReplyLikeEntity";
+import Profile from "@/db/entities/ProfileEntity";
 import {
     deleteReplyByReplyId,
     getReplyByReplyId,

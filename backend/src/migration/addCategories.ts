@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
-import { Category } from "@/db/entities/CategoryEntity";
+import Category from "@/db/entities/CategoryEntity";
 
-export class AddCategories1709573550000 implements MigrationInterface {
+export default class AddCategories1709573550000 implements MigrationInterface {
     categories = [
         {
             name: "EXAM",

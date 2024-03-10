@@ -1,8 +1,8 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
-import { University } from "@/db/entities/UniversityEntity";
+import University from "@/db/entities/UniversityEntity";
 import fs from "fs";
 
-export class AddUniversites1709573535718 implements MigrationInterface {
+export default class AddUniversites1709573535718 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         const requiredData = this.getRequiredData();
         const universities = requiredData.map(item => {

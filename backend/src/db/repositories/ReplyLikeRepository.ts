@@ -1,4 +1,4 @@
-import { ReplyLike } from "@/db/entities/ReplyLikeEntity";
+import ReplyLike from "@/db/entities/ReplyLikeEntity";
 import dataSource from "@/db/postgres.config";
 
 const likeRepository = dataSource.getRepository(ReplyLike);

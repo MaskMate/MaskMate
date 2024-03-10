@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Profile } from "@/db/entities/ProfileEntity";
+import Profile from "@/db/entities/ProfileEntity";
 import {
     createNewComment,
     deleteComment,

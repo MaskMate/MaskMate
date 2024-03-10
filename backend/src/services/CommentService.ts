@@ -1,6 +1,6 @@
-import { Comment } from "@/db/entities/CommentEntity";
-import { CommentLike } from "@/db/entities/CommentLikeEntity";
-import { Profile } from "@/db/entities/ProfileEntity";
+import Comment from "@/db/entities/CommentEntity";
+import CommentLike from "@/db/entities/CommentLikeEntity";
+import Profile from "@/db/entities/ProfileEntity";
 import {
     deleteCommentByCommentId,
     getCommentByCommentId,

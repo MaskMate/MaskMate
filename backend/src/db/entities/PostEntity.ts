@@ -6,12 +6,12 @@ import {
     ManyToOne,
     OneToMany,
 } from "typeorm";
-import { Category } from "./CategoryEntity";
-import { Profile } from "./ProfileEntity";
-import { Comment } from "./CommentEntity";
+import Category from "./CategoryEntity";
+import Profile from "./ProfileEntity";
+import Comment from "./CommentEntity";
 
 @Entity()
-export class Post {
+export default class Post {
     @PrimaryGeneratedColumn("uuid", { name: "post_id" })
     postId: string;
 

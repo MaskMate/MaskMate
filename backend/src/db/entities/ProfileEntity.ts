@@ -7,12 +7,12 @@ import {
     ManyToOne,
     OneToMany,
 } from "typeorm";
-import { University } from "./UniversityEntity";
-import { Post } from "./PostEntity";
-import { Comment } from "./CommentEntity";
+import University from "./UniversityEntity";
+import Post from "./PostEntity";
+import Comment from "./CommentEntity";
 
 @Entity()
-export class Profile {
+export default class Profile {
     @PrimaryGeneratedColumn("uuid", { name: "profile_id" })
     profileId: string;
 

@@ -1,4 +1,4 @@
-import { Profile } from "@/db/entities/ProfileEntity";
+import Profile from "@/db/entities/ProfileEntity";
 import dataSource from "@/db/postgres.config";
 
 const profileRepo = dataSource.getRepository(Profile);

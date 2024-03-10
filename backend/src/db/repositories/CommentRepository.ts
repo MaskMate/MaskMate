@@ -1,5 +1,5 @@
-import { Comment } from "@/db/entities/CommentEntity";
-import { Post } from "@/db/entities/PostEntity";
+import Comment from "@/db/entities/CommentEntity";
+import Post from "@/db/entities/PostEntity";
 import dataSource from "@/db/postgres.config";
 
 const commentRepo = dataSource.getRepository(Comment);

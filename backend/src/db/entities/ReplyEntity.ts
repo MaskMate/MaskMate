@@ -5,11 +5,11 @@ import {
     ManyToOne,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { Profile } from "./ProfileEntity";
-import { Comment } from "./CommentEntity";
+import Profile from "./ProfileEntity";
+import Comment from "./CommentEntity";
 
 @Entity()
-export class Reply {
+export default class Reply {
     @PrimaryGeneratedColumn("uuid", { name: "reply_id" })
     replyId: string;
 

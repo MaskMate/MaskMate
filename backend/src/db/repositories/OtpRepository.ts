@@ -1,4 +1,4 @@
-import { Otp } from "@/db/entities/OtpEntity";
+import Otp from "@/db/entities/OtpEntity";
 import dataSource from "@/db/postgres.config";
 
 const otpRepo = dataSource.getRepository(Otp);
@@ -25,7 +25,7 @@ export const deleteOldEmail = async (email: string) => {
 };
 
 export const findByOtp = async (otp: string) => {
-    return await otpRepo.findOne({ where: { otp }, select: ["otp"] });
+    return await otpRepo.findOne({ where: Otp, select: ["otp"] });
 };
 
 export const findOtpByEmail = async (email: string) => {
