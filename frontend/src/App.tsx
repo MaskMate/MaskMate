@@ -1,9 +1,14 @@
 import { FC } from "react";
+import NavigationBar from "@components/Navbar";
 
 interface AppProps {}
 
 const App: FC<AppProps> = () => {
-    return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+    return (
+        <>
+            <NavigationBar />
+        </>
+    );
 };
 
 export default App;
