@@ -5,8 +5,8 @@ import {
     handleEditComment,
     handleDeleteComment,
     handleLikeComment,
-} from "../controllers/CommentController";
-import authorize from "../middlewares/AuthMiddleware";
+} from "@/controllers/CommentController";
+import authorize from "@/middlewares/AuthMiddleware";
 
 const CommentRouter = Router();
 

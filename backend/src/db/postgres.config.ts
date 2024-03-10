@@ -1,17 +1,17 @@
 import { DataSource } from "typeorm";
-import { User } from "./entities/UserEntity";
-import { Otp } from "./entities/OtpEntity";
-import { University } from "./entities/UniversityEntity";
-import { Post } from "./entities/PostEntity";
-import { Category } from "./entities/CategoryEntity";
-import { AddCategories1709573550000 } from "../migration/addCategories";
-import { AddUniversites1709573535718 } from "../migration/addUniversites";
-import { Profile } from "./entities/ProfileEntity";
-import { PostLike } from "./entities/PostLikeEntity";
-import { Comment } from "./entities/CommentEntity";
-import { CommentLike } from "./entities/CommentLikeEntity";
-import { Reply } from "./entities/ReplyEntity";
-import { ReplyLike } from "./entities/ReplyLikeEntity";
+import { User } from "@/db/entities/UserEntity";
+import { Otp } from "@/db/entities/OtpEntity";
+import { University } from "@/db/entities/UniversityEntity";
+import { Post } from "@/db/entities/PostEntity";
+import { Category } from "@/db/entities/CategoryEntity";
+import { Profile } from "@/db/entities/ProfileEntity";
+import { PostLike } from "@/db/entities/PostLikeEntity";
+import { Comment } from "@/db/entities/CommentEntity";
+import { CommentLike } from "@/db/entities/CommentLikeEntity";
+import { Reply } from "@/db/entities/ReplyEntity";
+import { ReplyLike } from "@/db/entities/ReplyLikeEntity";
+import { AddCategories1709573550000 } from "@/migration/addCategories";
+import { AddUniversites1709573535718 } from "@/migration/addUniversites";
 
 const dataSource = new DataSource({
     type: "postgres",

@@ -5,8 +5,8 @@ import {
     editPost,
     getAllPosts,
     likePost,
-} from "../services/PostService";
-import { Profile } from "../db/entities/ProfileEntity";
+} from "@/services/PostService";
+import { Profile } from "@/db/entities/ProfileEntity";
 
 export const handleGetPost = async (req: Request, res: Response) => {
     try {

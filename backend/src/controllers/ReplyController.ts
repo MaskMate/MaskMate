@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { Profile } from "../db/entities/ProfileEntity";
+import { Profile } from "@/db/entities/ProfileEntity";
 import {
     createNewReply,
     deleteReply,
     getAllReplies,
     likeReply,
     updateReply,
-} from "../services/ReplyService";
+} from "@/services/ReplyService";
 
 export const handleGetReply = async (req: Request, res: Response) => {
     const { commentId } = req.params;

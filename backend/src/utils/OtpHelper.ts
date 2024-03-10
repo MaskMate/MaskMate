@@ -1,6 +1,6 @@
 import otpGenerator from "otp-generator";
 import nodemailer from "nodemailer";
-import { findByOtp } from "../db/repositories/OtpRepository";
+import { findByOtp } from "@/db/repositories/OtpRepository";
 import * as fs from "fs";
 
 export const generateOtp = async () => {

@@ -1,34 +1,34 @@
-import { Otp } from "../db/entities/OtpEntity";
-import { University } from "../db/entities/UniversityEntity";
-import { User } from "../db/entities/UserEntity";
+import { Otp } from "@/db/entities/OtpEntity";
+import { University } from "@/db/entities/UniversityEntity";
+import { User } from "@/db/entities/UserEntity";
 import {
     deleteOldEmail,
     deleteOtpbyEmail,
     findOtpByEmail,
     saveOtp,
     verifyEmail,
-} from "../db/repositories/OtpRepository";
+} from "@/db/repositories/OtpRepository";
 import {
     findUniversityByDomain,
     saveUniversity,
-} from "../db/repositories/UniversityRepository";
+} from "@/db/repositories/UniversityRepository";
 import {
     findUserByEmail,
     isEmailTaken,
     saveUser,
-} from "../db/repositories/UserRepository";
-import { generateOtp, sendEmail } from "../utils/OtpHelper";
+} from "@/db/repositories/UserRepository";
+import { generateOtp, sendEmail } from "@/utils/OtpHelper";
 import {
     comparePassword,
     generateUsername,
     hashPassword,
-} from "../utils/AuthHelper";
-import { Profile } from "../db/entities/ProfileEntity";
+} from "@/utils/AuthHelper";
+import { Profile } from "@/db/entities/ProfileEntity";
 import {
     findProfileByEmail,
     isCredentialTaken,
     saveProfile,
-} from "../db/repositories/ProfileRepository";
+} from "@/db/repositories/ProfileRepository";
 
 export const registerEmail = async (email: string) => {
     await validateEmail(email);

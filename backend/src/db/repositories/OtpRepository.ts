@@ -1,5 +1,5 @@
-import { Otp } from "../entities/OtpEntity";
-import dataSource from "../postgres.config";
+import { Otp } from "@/db/entities/OtpEntity";
+import dataSource from "@/db/postgres.config";
 
 const otpRepo = dataSource.getRepository(Otp);
 

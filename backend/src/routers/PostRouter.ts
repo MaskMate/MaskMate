@@ -5,8 +5,8 @@ import {
     handleEditPost,
     handleDeletePost,
     handleLikePost,
-} from "../controllers/PostController";
-import authorize from "../middlewares/AuthMiddleware";
+} from "@/controllers/PostController";
+import authorize from "@/middlewares/AuthMiddleware";
 
 const PostRouter = Router();
 

@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import otpGenerator from "otp-generator";
-import { Profile } from "../db/entities/ProfileEntity";
-import { isUsernameTaken } from "../db/repositories/ProfileRepository";
+import { Profile } from "@/db/entities/ProfileEntity";
+import { isUsernameTaken } from "@/db/repositories/ProfileRepository";
 
 export const hashPassword = async (password: string) => {
     const salt = await bcrypt.genSalt(12);

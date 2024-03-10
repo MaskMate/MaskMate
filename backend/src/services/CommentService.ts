@@ -1,18 +1,18 @@
-import { Comment } from "../db/entities/CommentEntity";
-import { CommentLike } from "../db/entities/CommentLikeEntity";
-import { Profile } from "../db/entities/ProfileEntity";
+import { Comment } from "@/db/entities/CommentEntity";
+import { CommentLike } from "@/db/entities/CommentLikeEntity";
+import { Profile } from "@/db/entities/ProfileEntity";
 import {
     deleteCommentByCommentId,
     getCommentByCommentId,
     getCommentByPostId,
     saveComment,
-} from "../db/repositories/CommentRepository";
+} from "@/db/repositories/CommentRepository";
 import {
     findCommentLikeByProfileIdAndCommentId,
     removeCommentLikeByProfileIdAndCommentId,
     saveCommentLike,
-} from "../db/repositories/CommentLikeRepository";
-import { getPostByPostId, savePost } from "../db/repositories/PostRepository";
+} from "@/db/repositories/CommentLikeRepository";
+import { getPostByPostId, savePost } from "@/db/repositories/PostRepository";
 
 export const getAllComments = async (postId: string) => {
     const post = await getPostByPostId(postId);

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { findProfile } from "../db/repositories/ProfileRepository";
-import { Profile } from "../db/entities/ProfileEntity";
+import { findProfile } from "@/db/repositories/ProfileRepository";
+import { Profile } from "@/db/entities/ProfileEntity";
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Express {

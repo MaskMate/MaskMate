@@ -1,21 +1,21 @@
-import { Reply } from "../db/entities/ReplyEntity";
-import { ReplyLike } from "../db/entities/ReplyLikeEntity";
-import { Profile } from "../db/entities/ProfileEntity";
+import { Reply } from "@/db/entities/ReplyEntity";
+import { ReplyLike } from "@/db/entities/ReplyLikeEntity";
+import { Profile } from "@/db/entities/ProfileEntity";
 import {
     deleteReplyByReplyId,
     getReplyByReplyId,
     getReplyByCommentId,
     saveReply,
-} from "../db/repositories/ReplyRepository";
+} from "@/db/repositories/ReplyRepository";
 import {
     findReplyLikeByProfileIdAndReplyId,
     removeReplyLikeByProfileIdAndReplyId,
     saveReplyLike,
-} from "../db/repositories/ReplyLikeRepository";
+} from "@/db/repositories/ReplyLikeRepository";
 import {
     getOnlyCommentByCommentId,
     saveComment,
-} from "../db/repositories/CommentRepository";
+} from "@/db/repositories/CommentRepository";
 
 export const getAllReplies = async (commentId: string) => {
     const comment = await getOnlyCommentByCommentId(commentId);

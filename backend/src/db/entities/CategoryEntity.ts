@@ -6,7 +6,7 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { PostCategories } from "../../constants/Categories";
+import { PostCategories } from "@/constants/Categories";
 import { Post } from "./PostEntity";
 
 @Entity()

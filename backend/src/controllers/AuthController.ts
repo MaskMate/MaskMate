@@ -5,8 +5,8 @@ import {
     registerEmail,
     registerNewUser,
     validateVerificationCode,
-} from "../services/AuthService";
-import generateToken from "../utils/AuthHelper";
+} from "@/services/AuthService";
+import generateToken from "@/utils/AuthHelper";
 
 export const handleSignup = async (req: Request, res: Response) => {
     const { email } = req.body;

@@ -5,8 +5,8 @@ import {
     handleEditReply,
     handleDeleteReply,
     handleLikeReply,
-} from "../controllers/ReplyController";
-import authorize from "../middlewares/AuthMiddleware";
+} from "@/controllers/ReplyController";
+import authorize from "@/middlewares/AuthMiddleware";
 
 const ReplyRouter = Router();
 

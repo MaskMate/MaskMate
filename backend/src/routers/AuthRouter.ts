@@ -5,7 +5,7 @@ import {
     handleSignupDetails,
     handleRegister,
     handleLogin,
-} from "../controllers/AuthController";
+} from "@/controllers/AuthController";
 
 const AuthRouter = Router();
 

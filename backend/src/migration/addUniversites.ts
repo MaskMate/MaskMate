@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
-import { University } from "../db/entities/UniversityEntity";
+import { University } from "@/db/entities/UniversityEntity";
 import fs from "fs";
 
 export class AddUniversites1709573535718 implements MigrationInterface {

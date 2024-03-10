@@ -1,11 +1,11 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import "reflect-metadata";
-import dataSource from "./db/postgres.config";
-import AuthRouter from "./routers/AuthRouter";
-import PostRouter from "./routers/PostRouter";
-import CommentRouter from "./routers/CommentRouter";
-import ReplyRouter from "./routers/ReplyRouter";
+import dataSource from "@/db/postgres.config";
+import AuthRouter from "@/routers/AuthRouter";
+import PostRouter from "@/routers/PostRouter";
+import CommentRouter from "@/routers/CommentRouter";
+import ReplyRouter from "@/routers/ReplyRouter";
 
 dotenv.config();
 

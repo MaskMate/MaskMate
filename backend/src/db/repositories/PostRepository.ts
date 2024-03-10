@@ -1,5 +1,5 @@
-import { Post } from "../entities/PostEntity";
-import dataSource from "../postgres.config";
+import { Post } from "@/db/entities/PostEntity";
+import dataSource from "@/db/postgres.config";
 
 const postRepo = dataSource.getRepository(Post);
 
