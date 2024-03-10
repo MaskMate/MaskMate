@@ -9,6 +9,7 @@ import {
     Input,
 } from "@nextui-org/react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { login } from "@/apis/auth";
 
 interface LoginProps {
     isOpen: boolean;
@@ -37,6 +38,19 @@ const Login: FC<LoginProps> = props => {
 
         return password.length < 8;
     }, [password]);
+
+    const handleLogin = async () => {
+        if (isInvalidEmail || isInvalidPassword) {
+            console.log("failed");
+            return;
+        }
+        const data = await login(email, password);
+        if (data) {
+            onOpenChange();
+            setEmail("");
+            setPassword("");
+        }
+    };
 
     return (
         <>
@@ -106,7 +120,7 @@ const Login: FC<LoginProps> = props => {
                                     onPress={onClose}>
                                     Close
                                 </Button>
-                                <Button color="primary" onPress={onClose}>
+                                <Button color="primary" onClick={handleLogin}>
                                     Sign in
                                 </Button>
                             </ModalFooter>
