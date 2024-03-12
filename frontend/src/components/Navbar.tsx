@@ -20,7 +20,13 @@ const navbar: FC<NavigationBarProps> = ({}) => {
             <Login isOpen={isOpen} onOpenChange={onOpenChange} />
             <Navbar>
                 <NavbarBrand>
-                    <Image src={MaskmateLogo} alt="logo" width={40} />
+                    <Image
+                        src={MaskmateLogo}
+                        alt="logo"
+                        width={35}
+                        height={35}
+                        style={{ cursor: "pointer", borderRadius: 0 }}
+                    />
                 </NavbarBrand>
                 <NavbarContent justify="end">
                     <NavbarItem className="hidden lg:flex">
